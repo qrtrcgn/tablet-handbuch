@@ -759,6 +759,27 @@
             'galerie': 'galerie', 'samsung': 'samsung', 'einstellungen': 'einstellungen', 'hilfe': 'hilfe'
         };
 
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
+            
+            const page = document.getElementById(pageId);
+            const btn = document.querySelector(`[data-page="${pageId}"]`);
+            
+            if (page) page.classList.add('active');
+            if (btn) btn.classList.add('active');
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            history.replaceState(null, '', '#' + pageId);
+        }
+
+        document.querySelectorAll('.nav-item').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const page = pageMap[btn.dataset.page];
+                if (page) showPage(page);
+            });
+        });
+
         if (window.location.hash && pageMap[window.location.hash.slice(1)]) {
             showPage(window.location.hash.slice(1));
         }
