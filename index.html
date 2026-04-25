@@ -23,6 +23,8 @@
             --md-sys-color-on-surface: #1a1b1f;
             --md-sys-color-surface-variant: #e1e2ec;
             --md-sys-color-on-surface-variant: #44474f;
+            --md-sys-color-error: #ba1a1a;
+            --md-sys-color-success: #146c2e;
             --radius-xl: 28px;
             --radius-lg: 16px;
         }
@@ -51,18 +53,19 @@
             display: flex;
             align-items: center;
             border-bottom: 1px solid var(--md-sys-color-surface-variant);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
         }
 
         header h1 { 
             margin: 0; 
-            font-size: 1.3rem; 
+            font-size: 1.4rem; 
             font-weight: 500;
             color: var(--md-sys-color-on-surface);
         }
 
         .header-icon {
             color: var(--md-sys-color-primary);
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             margin-right: 12px;
         }
 
@@ -74,12 +77,12 @@
             right: 0;
             background: #f1f3f9;
             display: flex;
-            padding: 10px 4px 24px 4px;
+            padding: 10px 10px 24px 10px;
             z-index: 1000;
             overflow-x: auto;
             scrollbar-width: none;
-            justify-content: space-around;
             border-top: 1px solid #e1e2ec;
+            gap: 8px;
         }
         nav.tab-bar::-webkit-scrollbar { display: none; }
 
@@ -90,10 +93,11 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             font-weight: 500;
             cursor: pointer;
-            min-width: 65px;
+            min-width: 72px;
+            flex-shrink: 0;
             transition: all 0.2s;
         }
 
@@ -134,47 +138,58 @@
             background: white;
             border-radius: var(--radius-xl);
             padding: 28px;
-            margin-bottom: 16px;
+            margin-bottom: 20px;
             border: 1px solid var(--md-sys-color-surface-variant);
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.04);
         }
 
-        h2 { font-size: 1.6rem; margin: 0 0 16px 0; color: var(--md-sys-color-on-surface); font-weight: 500; }
-        h3 { font-size: 1.2rem; margin: 24px 0 12px 0; color: var(--md-sys-color-primary); font-weight: 500; }
+        h2 { font-size: 1.6rem; margin: 0 0 16px 0; color: var(--md-sys-color-primary); font-weight: 500; border-bottom: 2px solid #f1f3f9; padding-bottom: 12px; }
+        h3 { font-size: 1.3rem; margin: 24px 0 12px 0; color: var(--md-sys-color-on-surface); font-weight: 500; }
 
         .info-card {
-            background: #f0f4f8;
+            background: #f8fafc;
             border-radius: var(--radius-lg);
-            padding: 18px;
+            padding: 20px;
             margin: 16px 0;
             display: flex;
             gap: 16px;
             align-items: flex-start;
+            border: 1px solid #e1e2ec;
         }
 
-        .info-card i { font-size: 1.8rem; color: var(--md-sys-color-primary); }
+        .info-card.highlight { background: #e9f0ff; border-color: #d9e2ff; }
+        .info-card.warning { background: #fff1f0; border-color: #ffdad6; }
+        .info-card.success { background: #e8f5e9; border-color: #c8e6c9; }
+
+        .info-card i { font-size: 2rem; color: var(--md-sys-color-primary); margin-top: 2px; }
+        .info-card.warning i { color: var(--md-sys-color-error); }
+        .info-card.success i { color: var(--md-sys-color-success); }
 
         /* App Items */
         .app-row {
             display: flex;
             align-items: center;
             padding: 14px 0;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid #f1f3f9;
         }
         .app-row:last-child { border: none; }
         
         .app-icon {
-            width: 44px;
-            height: 44px;
-            background: #f1f3f9;
-            border-radius: 12px;
+            width: 50px;
+            height: 50px;
+            background: var(--md-sys-color-primary-container);
+            border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
             margin-right: 16px;
-            color: var(--md-sys-color-primary);
+            color: var(--md-sys-color-on-primary-container);
         }
-        .app-icon i { font-size: 1.6rem; }
+        .app-icon i { font-size: 1.8rem; }
+
+        .step-list { padding-left: 20px; margin: 10px 0; }
+        .step-list li { margin-bottom: 12px; padding-left: 8px; }
+        .step-list li::marker { color: var(--md-sys-color-primary); font-weight: bold; }
 
         /* Buttons */
         .btn-primary {
@@ -192,126 +207,270 @@
             align-items: center;
             justify-content: center;
             gap: 10px;
+            box-shadow: 0 4px 8px rgba(0,86,210,0.2);
         }
 
         @media print {
-            nav, header { display: none !important; }
-            .page { display: block !important; page-break-after: always; }
-            .card { border: 1px solid #ccc; break-inside: avoid; }
+            nav, header, .no-print { display: none !important; }
+            .page { display: block !important; page-break-after: always; padding: 0; }
+            .card { border: 1px solid #ccc; break-inside: avoid; box-shadow: none; margin-bottom: 30px; }
+            body { font-size: 12pt; background: white; }
         }
     </style>
 </head>
 <body>
 
 <header>
-    <i class="uil uil-mobile-android header-icon"></i>
+    <i class="uil uil-apps header-icon"></i>
     <h1>Mein Digitaler Begleiter</h1>
 </header>
 
 <nav class="tab-bar no-print">
     <button class="tab-btn active" onclick="showPage('start')"><div class="icon-wrapper"><i class="la la-home"></i></div><span>Start</span></button>
-    <button class="tab-btn" onclick="showPage('usage')"><div class="icon-wrapper"><i class="la la-hand-pointer"></i></div><span>Bedienung</span></button>
+    <button class="tab-btn" onclick="showPage('basics')"><div class="icon-wrapper"><i class="la la-battery-full"></i></div><span>Gerät</span></button>
+    <button class="tab-btn" onclick="showPage('wifi')"><div class="icon-wrapper"><i class="la la-wifi"></i></div><span>WLAN</span></button>
+    <button class="tab-btn" onclick="showPage('usage')"><div class="icon-wrapper"><i class="la la-hand-pointer"></i></div><span>Gesten</span></button>
     <button class="tab-btn" onclick="showPage('voice')"><div class="icon-wrapper"><i class="la la-microphone"></i></div><span>Sprache</span></button>
+    <button class="tab-btn" onclick="showPage('media')"><div class="icon-wrapper"><i class="la la-tv"></i></div><span>Medien</span></button>
     <button class="tab-btn" onclick="showPage('gemini')"><div class="icon-wrapper"><i class="la la-brain"></i></div><span>Wissen</span></button>
     <button class="tab-btn" onclick="showPage('apps')"><div class="icon-wrapper"><i class="la la-shopping-bag"></i></div><span>Apps</span></button>
     <button class="tab-btn" onclick="showPage('family')"><div class="icon-wrapper"><i class="la la-users"></i></div><span>Familie</span></button>
+    <button class="tab-btn" onclick="showPage('security')"><div class="icon-wrapper"><i class="la la-shield"></i></div><span>Schutz</span></button>
 </nav>
 
+<!-- START -->
 <main id="start" class="page active">
     <div class="card">
-        <h2>Hallo Mama</h2>
-        <p>Dieses Tablet ist dein Begleiter für die nächsten Tage. Es ist so eingestellt, dass du alles ganz einfach und entspannt nutzen kannst.</p>
-        <div class="info-card">
-            <i class="la la-lightbulb"></i>
+        <h2>Willkommen</h2>
+        <p>Dieses Tablet ist dein persönlicher Begleiter für die Zeit im Krankenhaus. Es ist so eingerichtet, dass du alles bequem vom Bett aus steuern kannst.</p>
+        
+        <div class="info-card highlight">
+            <i class="la la-check-circle"></i>
             <div>
-                <strong>Tipp für das Bett:</strong>
-                Lehne das Tablet einfach gegen ein Kissen. So hast du die Hände frei zum Lesen oder Video-Telefonieren.
+                <strong>Checkliste für den Nachttisch:</strong>
+                <ul style="margin: 8px 0 0 0; padding-left: 20px;">
+                    <li>Langes Ladekabel (für die Steckdose hinterm Bett)</li>
+                    <li>Kopfhörer (damit du ungestört fernsehen kannst)</li>
+                    <li>Ein weiches Brillenputztuch für den Bildschirm</li>
+                </ul>
             </div>
         </div>
     </div>
 </main>
 
-<main id="usage" class="page">
+<!-- GERÄT (BASICS) -->
+<main id="basics" class="page">
     <div class="card">
-        <h2>Einfache Bedienung</h2>
-        <p>Das Tablet hat fast keine Knöpfe. Du steuerst alles mit den Fingern.</p>
+        <h2>Das Tablet einstellen</h2>
         
+        <h3><i class="la la-sun" style="color:var(--md-sys-color-primary)"></i> Helligkeit & Augenschutz</h3>
+        <p>Wische vom oberen Bildschirmrand nach unten, um die Schnelleinstellungen zu öffnen.</p>
         <div class="info-card">
-            <i class="la la-home"></i>
-            <div><strong>Nach Hause:</strong> Von ganz unten kurz hochwischen. Alle Apps schließen sich und du bist wieder am Start.</div>
+            <i class="la la-sliders-h"></i>
+            <div>
+                <strong>Schieberegler:</strong> Ziehe den Balken mit der Sonne nach links (dunkler) oder rechts (heller).
+                <br><br>
+                <strong>Augenkomfort (Abends):</strong> Suche das Symbol für "Augenkomfort" oder "Nachtlicht". Es macht das Bild wärmer und strengt die Augen beim Lesen im Bett weniger an.
+            </div>
         </div>
+
+        <h3><i class="la la-volume-up" style="color:var(--md-sys-color-primary)"></i> Lautstärke</h3>
+        <p>An der Seite des Tablets findest du eine lange Taste (Wippe).</p>
+        <ul class="step-list">
+            <li><strong>Oben drücken:</strong> Lauter</li>
+            <li><strong>Unten drücken:</strong> Leiser</li>
+        </ul>
+
+        <h3><i class="la la-battery-three-quarters" style="color:var(--md-sys-color-primary)"></i> Akku laden</h3>
         <div class="info-card">
-            <i class="la la-arrow-left"></i>
-            <div><strong>Zurück:</strong> Vom linken oder rechten Rand zur Mitte wischen. Das ist wie "einmal umblättern" zurück.</div>
-        </div>
-        <div class="info-card">
-            <i class="la la-search-plus"></i>
-            <div><strong>Vergrößern:</strong> Lege zwei Finger auf und ziehe sie auseinander. Ideal zum Zeitunglesen.</div>
+            <i class="la la-plug"></i>
+            <div>Stecke das Tablet am besten jeden Abend an den Strom, genau wie dein Smartphone. So startest du jeden Tag mit 100%.</div>
         </div>
     </div>
 </main>
 
+<!-- WLAN & AUDIO -->
+<main id="wifi" class="page">
+    <div class="card">
+        <h2>Verbindungen herstellen</h2>
+        
+        <h3><i class="la la-wifi" style="color:var(--md-sys-color-primary)"></i> Das Krankenhaus-WLAN</h3>
+        <p>Im Krankenhaus ist das WLAN oft besonders gesichert. So kommst du rein:</p>
+        <ol class="step-list">
+            <li>Wische von ganz oben nach unten und halte das <strong>WLAN-Symbol (Wellen)</strong> lange gedrückt.</li>
+            <li>Tippe auf das Netzwerk des Krankenhauses (z.B. "Patienten-WLAN").</li>
+        </ol>
+        <div class="info-card warning">
+            <i class="la la-exclamation-triangle"></i>
+            <div>
+                <strong>Wichtig: Die Vorschaltseite!</strong><br>
+                Oft steht oben ein kleines "x" am WLAN-Symbol oder "Verbunden, kein Internet". Öffne dann den <strong>Chrome-Browser</strong> und rufe "google.de" auf. Es erscheint automatisch die Krankenhaus-Seite, wo du die Nutzungsbedingungen akzeptieren musst. Danach funktioniert alles!
+            </div>
+        </div>
+
+        <h3><i class="la la-headphones" style="color:var(--md-sys-color-primary)"></i> Kopfhörer (Bluetooth)</h3>
+        <p>Wenn du kabellose Kopfhörer hast:</p>
+        <ol class="step-list">
+            <li>Wische von oben nach unten und halte das <strong>Bluetooth-Symbol (das eckige B)</strong> lange gedrückt.</li>
+            <li>Schalte deine Kopfhörer ein (oft blinken sie dann).</li>
+            <li>Tippe auf dem Tablet auf "Neues Gerät koppeln" und wähle deine Kopfhörer aus.</li>
+        </ol>
+    </div>
+</main>
+
+<!-- GESTEN & SCHREIBEN -->
+<main id="usage" class="page">
+    <div class="card">
+        <h2>Bedienung & Gesten</h2>
+        <p>Das Tablet hat keine echte Tastatur oder Maus. Du steuerst es sanft mit den Fingern.</p>
+        
+        <div class="info-card">
+            <i class="la la-home"></i>
+            <div><strong>Nach Hause:</strong> Von ganz unten am Rand kurz nach oben wischen. Alle Apps schließen sich (laufen aber im Hintergrund weiter).</div>
+        </div>
+        <div class="info-card">
+            <i class="la la-arrow-left"></i>
+            <div><strong>Zurück:</strong> Vom linken oder rechten Rand in Richtung Mitte wischen. So gehst du eine Seite zurück.</div>
+        </div>
+        <div class="info-card">
+            <i class="la la-search-plus"></i>
+            <div><strong>Zeitung groß machen:</strong> Lege zwei Finger auf das Bild und ziehe sie auseinander.</div>
+        </div>
+
+        <h3 style="margin-top: 30px;"><i class="la la-keyboard" style="color:var(--md-sys-color-primary)"></i> Entspannt Schreiben</h3>
+        <p>Mit der "SwiftKey"-Tastatur kannst du wischen statt tippen.</p>
+        <div class="info-card success">
+            <i class="la la-hand-pointer"></i>
+            <div><strong>Das Wisch-Prinzip:</strong> Lasse deinen Finger einfach von Buchstabe zu Buchstabe über die Tastatur gleiten, ohne ihn abzuheben. Das Tablet errät das Wort meistens perfekt!</div>
+        </div>
+    </div>
+</main>
+
+<!-- SPRACHE -->
 <main id="voice" class="page">
     <div class="card">
         <h2>Sprechen statt Tippen</h2>
-        <p>Wenn du keine Lust hast zu tippen, kannst du dem Tablet einfach sagen, was es tun soll.</p>
+        <p>Wenn die Hände schwer werden, nutze einfach deine Stimme.</p>
         
-        <div class="info-card">
+        <div class="info-card highlight">
             <i class="la la-microphone"></i>
-            <div><strong>Nachrichten diktieren:</strong> Tippe in WhatsApp auf das kleine Mikrofon auf der Tastatur. Sprich einfach los – das Tablet schreibt alles mit.</div>
+            <div><strong>Nachrichten diktieren:</strong><br>Tippe in WhatsApp oder E-Mails auf das kleine Mikrofon auf der Tastatur. Sprich einfach los – vergiss nicht, "Punkt" oder "Komma" zu sagen. Das Tablet schreibt alles mit.</div>
         </div>
         
         <div class="info-card">
             <i class="la la-google"></i>
-            <div><strong>Hey Google:</strong> Sag einfach laut "Hey Google, wie wird das Wetter?" oder "Hey Google, spiele klassische Musik".</div>
+            <div><strong>Google Assistant rufen:</strong><br>Sag einfach laut:<br><em>"Hey Google, wie wird das Wetter morgen?"</em> oder<br><em>"Hey Google, stelle einen Wecker auf 7 Uhr."</em></div>
         </div>
     </div>
 </main>
 
+<!-- MEDIEN & UNTERHALTUNG -->
+<main id="media" class="page">
+    <div class="card">
+        <h2>Unterhaltung & Freizeit</h2>
+        <p>So vergeht die Zeit im Krankenhaus wie im Flug.</p>
+
+        <h3><i class="la la-tv" style="color:var(--md-sys-color-primary)"></i> Mediatheken (ARD & ZDF)</h3>
+        <p>Du musst nicht warten, bis etwas im Fernsehen läuft.</p>
+        <ul class="step-list">
+            <li>Öffne die <strong>ARD- oder ZDF-App</strong>.</li>
+            <li>Tippe unten auf "Suche" (die Lupe), um z.B. nach "Tatort" oder Dokumentationen zu suchen.</li>
+            <li>Tippe auf ein Bild und dann auf das "Abspielen"-Dreieck.</li>
+        </ul>
+
+        <h3><i class="la la-youtube" style="color:var(--md-sys-color-primary)"></i> YouTube</h3>
+        <p>Die App mit dem roten Rechteck. Hier findest du alles: Kochrezepte, Garten-Tipps, lustige Tiervideos oder alte Musikauftritte.</p>
+
+        <h3><i class="la la-book-open" style="color:var(--md-sys-color-primary)"></i> Zeitung lesen</h3>
+        <p>Öffne den <strong>Chrome Browser</strong> (bunter Kreis) und tippe oben die Adresse deiner Lieblingszeitung ein. Nutze die Zwei-Finger-Geste, um die Schrift groß zu machen.</p>
+    </div>
+</main>
+
+<!-- WISSEN (GEMINI) -->
 <main id="gemini" class="page">
     <div class="card">
         <h2>Dein Wissens-Begleiter</h2>
-        <p>Gemini hilft dir bei Fragen aller Art – wie ein intelligenter Assistent.</p>
+        <p>Gemini hilft dir bei Fragen aller Art – wie ein intelligenter, geduldiger Experte.</p>
         
-        <div style="background: #e9f0ff; padding: 22px; border-radius: 20px; margin: 20px 0; border: 1px solid #d9e2ff;">
-            <p style="font-style: italic; margin: 0; color: #004a99; font-size: 1.1rem;">
-                <i class="la la-quote-left" style="opacity: 0.3;"></i><br>
-                "Erklär mir diesen medizinischen Begriff..."<br>
-                "Schreib eine nette E-Mail an..."<br>
-                "Was kann ich gegen Langeweile tun?"
-            </p>
+        <div class="info-card highlight">
+            <i class="la la-magic"></i>
+            <div>
+                <strong>Probiere folgende Sätze aus:</strong>
+                <p style="font-style: italic; margin-top: 10px; color: #004a99;">
+                    "Erklär mir diesen medizinischen Befund ganz einfach ohne Fachwörter."<br><br>
+                    "Schreib eine nette kurze E-Mail an meine Nachbarin, dass es mir gut geht."<br><br>
+                    "Erzähl mir eine aufbauende Geschichte gegen Langeweile."
+                </p>
+            </div>
         </div>
-        <p>Tippe auf das bunte Sternen-Symbol (Gemini) auf deinem Bildschirm, um zu starten.</p>
+        <p>Tippe auf das bunte Sternen-Symbol (Gemini) auf deinem Bildschirm, nutze das Mikrofon und stelle deine Frage einfach laut.</p>
     </div>
 </main>
 
+<!-- APPS -->
 <main id="apps" class="page">
     <div class="card">
-        <h2>Deine Favoriten</h2>
-        <p>Diese Apps haben wir für dich vorbereitet:</p>
+        <h2>Deine Lieblings-Apps</h2>
+        <p>Diese Apps haben wir für dich vorbereitet. Sie machen dir das Leben vom Bett aus leichter:</p>
         
-        <div class="app-row"><div class="app-icon"><i class="la la-pills"></i></div><div><strong>Apotheke</strong><br><small>DocMorris & medpex</small></div></div>
-        <div class="app-row"><div class="app-icon"><i class="la la-shopping-cart"></i></div><div><strong>Shopping</strong><br><small>eBay & Amazon</small></div></div>
-        <div class="app-row"><div class="app-icon"><i class="la la-box"></i></div><div><strong>Versand</strong><br><small>DHL Paketverfolgung</small></div></div>
-        <div class="app-row"><div class="app-icon"><i class="la la-university"></i></div><div><strong>Finanzen</strong><br><small>Sparkasse & PayPal</small></div></div>
+        <div class="app-row"><div class="app-icon"><i class="la la-pills"></i></div><div><strong>Gesundheit & E-Rezept</strong><br><small>DocMorris & medpex. Scanne E-Rezepte direkt mit der Kamera ein.</small></div></div>
+        <div class="app-row"><div class="app-icon"><i class="la la-shopping-cart"></i></div><div><strong>Einkaufen & Stöbern</strong><br><small>eBay & Amazon. Gemütlich auf dem großen Bildschirm shoppen.</small></div></div>
+        <div class="app-row"><div class="app-icon"><i class="la la-leaf"></i></div><div><strong>Prospekte lesen</strong><br><small>ALDI, REWE & Kaufland. Alles digital ohne Papier.</small></div></div>
+        <div class="app-row"><div class="app-icon"><i class="la la-box"></i></div><div><strong>Versand</strong><br><small>DHL Paketverfolgung. Sieh immer, wo deine Bestellungen sind.</small></div></div>
+        <div class="app-row"><div class="app-icon"><i class="la la-university"></i></div><div><strong>Finanzen</strong><br><small>Sparkasse & PayPal. Sicherer Zugriff auch im Krankenhaus.</small></div></div>
         
-        <button class="btn-primary" onclick="showPage('start')"><i class="la la-plus-circle"></i> Weitere Apps laden</button>
     </div>
 </main>
 
+<!-- FAMILIE -->
 <main id="family" class="page">
     <div class="card">
-        <h2>Wir sind bei dir</h2>
-        <p>Du kannst uns jederzeit sehen und hören.</p>
+        <h2>Kontakt zur Familie</h2>
+        <p>Wir sind nur einen Fingertipp entfernt.</p>
         
+        <h3><i class="la la-whatsapp" style="color:var(--md-sys-color-primary)"></i> WhatsApp</h3>
+        <ul class="step-list">
+            <li><strong>Video-Anruf:</strong> Im Chat oben rechts auf die kleine Kamera tippen. Stell das Tablet am besten aufrecht hin.</li>
+            <li><strong>Sprachnachricht:</strong> Halte das grüne Mikrofon unten rechts gedrückt, während du sprichst. Lass los zum Senden.</li>
+            <li><strong>Fotos schicken:</strong> Tippe auf die Büroklammer, dann "Galerie" und wähle dein Bild aus.</li>
+        </ul>
+
+        <h3><i class="la la-video-camera" style="color:var(--md-sys-color-primary)"></i> Familien-Treffen (Google Meet)</h3>
         <div class="info-card">
-            <i class="la la-video"></i>
-            <div><strong>WhatsApp Video:</strong> Im Chat oben rechts auf die Kamera tippen.</div>
+            <i class="la la-users"></i>
+            <div>Wenn wir dir einen Einladungs-Link (blau) per Mail oder WhatsApp schicken, tippe einfach darauf und wähle "Teilnehmen". So können wir alle (z.B. auch Martin) gleichzeitig auf deinem Bildschirm sein!</div>
         </div>
-        <div class="info-card">
-            <i class="la la-video-camera"></i>
-            <div><strong>Google Meet:</strong> Wenn wir einen Link schicken, tippe einfach darauf und wähle "Teilnehmen".</div>
+    </div>
+</main>
+
+<!-- SICHERHEIT & HILFE -->
+<main id="security" class="page">
+    <div class="card">
+        <h2>Schutz & Hilfe</h2>
+        
+        <h3><i class="la la-shield" style="color:var(--md-sys-color-primary)"></i> E-Mails & Spam erkennen</h3>
+        <p>Da du viele Bestell-Mails (eBay, Apotheken) bekommst, achte auf Betrüger:</p>
+        <div class="info-card warning">
+            <i class="la la-envelope"></i>
+            <div>
+                <strong>Vorsicht bei:</strong>
+                <ul style="margin: 5px 0 0 0; padding-left: 20px;">
+                    <li>Mails, die dich drängen ("Dein Paket wird sonst vernichtet!"). DHL macht sowas nie.</li>
+                    <li>Forderungen nach kleinen Gebühren ("Zahlen Sie 1,99€ Zoll").</li>
+                    <li>Mails von der "Sparkasse", die dich bitten, dich sofort über einen Link anzumelden.</li>
+                </ul>
+                <em>Im Zweifel: Löschen oder uns fragen!</em>
+            </div>
         </div>
+
+        <h3><i class="la la-life-ring" style="color:var(--md-sys-color-primary)"></i> Wenn das Tablet hängt</h3>
+        <p>Manchmal stürzt eine App ab oder das Bild friert ein. Das ist nicht schlimm.</p>
+        <div class="info-card highlight" style="border-left: 4px solid var(--md-sys-color-primary);">
+            <i class="la la-power-off"></i>
+            <div><strong>Der Neustart-Griff:</strong> Halte den Ein/Aus-Schalter an der Seite des Tablets sehr lange (ca. 15 Sekunden) gedrückt, bis das Gerät vibriert und neu startet. Das löst 99% aller Probleme.</div>
+        </div>
+
+        <button class="btn-primary no-print" onclick="window.print()"><i class="la la-print"></i> Gesamtes Handbuch drucken</button>
     </div>
 </main>
 
