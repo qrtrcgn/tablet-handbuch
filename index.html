@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Digitaler Begleiter</title>
+    <title>Digitaler Begleiter — Premium Edition</title>
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#ffffff">
     
@@ -15,14 +15,15 @@
         :root {
             --bg: #fbfbfb;
             --surface: #ffffff;
-            --text-main: #1d1d1f; /* Apple Style Text */
+            --text-main: #1d1d1f;
             --text-muted: #86868b;
             --brand: #0071e3;
-            --dock: rgba(29, 29, 31, 0.85);
+            --dock: rgba(29, 29, 31, 0.88);
             --border: rgba(0,0,0,0.06);
-            --radius-app: 24px;
-            --radius-btn: 14px;
-            --shadow-soft: 0 8px 30px rgba(0,0,0,0.04);
+            --radius-app: 28px;
+            --radius-lg: 20px;
+            --shadow-soft: 0 12px 40px rgba(0,0,0,0.04);
+            --shadow-premium: 0 20px 50px rgba(0,0,0,0.1);
         }
 
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -34,16 +35,16 @@
             background-color: var(--bg);
             color: var(--text-main);
             font-size: 1.25rem;
-            line-height: 1.5;
+            line-height: 1.55;
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Clean Header */
+        /* Pure Minimalist Header */
         header {
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.85);
             backdrop-filter: saturate(180%) blur(20px);
             -webkit-backdrop-filter: saturate(180%) blur(20px);
-            padding: 20px 30px;
+            padding: 20px 32px;
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -53,62 +54,63 @@
             justify-content: space-between;
         }
 
-        header h1 { font-size: 1.1rem; font-weight: 600; margin: 0; letter-spacing: -0.01em; }
-        .dot { width: 8px; height: 8px; background: #32d74b; border-radius: 50%; margin-right: 8px; display: inline-block; }
+        header h1 { font-size: 1.1rem; font-weight: 600; margin: 0; letter-spacing: -0.01em; color: var(--text-main); }
+        .live-dot { width: 8px; height: 8px; background: #32d74b; border-radius: 50%; margin-right: 10px; display: inline-block; box-shadow: 0 0 10px rgba(50, 215, 75, 0.5); }
 
-        /* Floating Dark Dock */
+        /* Floating Minimalist Dock */
         nav.dock {
             position: fixed;
-            bottom: 30px;
+            bottom: 24px;
             left: 50%;
             transform: translateX(-50%);
             background: var(--dock);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
             display: flex;
             padding: 8px;
-            border-radius: 28px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.25);
             z-index: 2000;
-            width: 90%;
-            max-width: 700px;
+            width: 92%;
+            max-width: 800px;
             overflow-x: auto;
             scrollbar-width: none;
-            gap: 4px;
+            gap: 2px;
         }
         nav.dock::-webkit-scrollbar { display: none; }
 
         .nav-item {
             background: none;
             border: none;
-            color: rgba(255,255,255,0.5);
+            color: rgba(255,255,255,0.45);
             display: flex;
             flex-direction: column;
             align-items: center;
             font-size: 0.65rem;
             font-weight: 600;
             cursor: pointer;
-            min-width: 68px;
-            padding: 10px 0;
-            border-radius: 20px;
-            transition: all 0.2s ease;
+            min-width: 72px;
+            padding: 12px 0;
+            border-radius: 22px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .nav-item i { font-size: 1.6rem; margin-bottom: 4px; }
-        .nav-item.active { color: #ffffff; background: rgba(255,255,255,0.1); }
+        .nav-item i { font-size: 1.7rem; margin-bottom: 5px; }
+        .nav-item.active { color: #ffffff; background: rgba(255,255,255,0.12); }
+        .nav-item:active { transform: scale(0.92); }
 
-        /* Content Container */
+        /* Content Structure */
         .content-area {
-            max-width: 800px;
+            max-width: 850px;
             margin: 0 auto;
-            padding: 30px 20px 160px 20px;
+            padding: 40px 24px 180px 24px;
         }
 
         .page { display: none; }
-        .page.active { display: block; animation: fadeIn 0.5s ease; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .page.active { display: block; animation: appleReveal 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+        @keyframes appleReveal { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* Stylish Cards */
+        /* Premium Card Design */
         .card {
             background: var(--surface);
             border-radius: var(--radius-app);
@@ -118,82 +120,116 @@
             border: 1px solid var(--border);
         }
 
-        h2 { font-size: 2.2rem; font-weight: 700; margin: 0 0 16px 0; letter-spacing: -0.04em; }
-        h3 { font-size: 1.4rem; font-weight: 600; margin: 40px 0 16px 0; display: flex; align-items: center; gap: 12px; }
-        h3 i { color: var(--brand); font-size: 1.8rem; }
+        .card-accent { background: linear-gradient(145deg, #0071e3, #005bb5); color: white; border: none; }
+        .card-accent h2, .card-accent p { color: white; }
 
-        p { color: var(--text-muted); font-weight: 400; margin-bottom: 24px; }
+        h2 { font-size: 2.4rem; font-weight: 700; margin: 0 0 16px 0; letter-spacing: -0.04em; color: var(--text-main); }
+        h3 { font-size: 1.5rem; font-weight: 600; margin: 48px 0 20px 0; display: flex; align-items: center; gap: 14px; color: var(--text-main); }
+        h3 i { color: var(--brand); font-size: 2rem; }
 
-        /* Premium Modules */
-        .guide-box {
+        p { color: var(--text-muted); font-size: 1.2rem; margin-bottom: 24px; font-weight: 400; }
+
+        /* Modules */
+        .module-box {
             background: #f5f5f7;
             border-radius: var(--radius-lg);
             padding: 24px;
             margin: 24px 0;
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
         }
+        .module-box i { font-size: 2.2rem; color: var(--brand); }
+        .module-box b { display: block; margin-bottom: 4px; font-size: 1.15rem; }
 
         .step-pill {
             display: flex;
             align-items: center;
-            gap: 16px;
-            padding: 16px 0;
-            border-bottom: 1px solid rgba(0,0,0,0.05);
+            gap: 20px;
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.04);
         }
         .step-pill:last-child { border: none; }
-        .step-id { font-weight: 700; color: var(--brand); width: 24px; }
+        .step-id { 
+            background: var(--brand); 
+            color: white; 
+            width: 32px; 
+            height: 32px; 
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-weight: 800; 
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
 
-        .app-grid {
+        .grid-3 {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 16px;
-            margin-top: 24px;
+            margin: 24px 0;
         }
 
-        .app-tile {
-            background: white;
-            padding: 24px;
-            border-radius: var(--radius-lg);
+        .tile {
+            background: #ffffff;
             border: 1px solid var(--border);
-            text-align: center;
-            transition: transform 0.2s;
-        }
-        .app-tile i { font-size: 2.5rem; color: var(--brand); margin-bottom: 12px; display: block; }
-        .app-tile b { font-size: 1.1rem; display: block; }
-        .app-tile span { font-size: 0.85rem; color: var(--text-muted); }
-
-        .prompt-card {
-            background: linear-gradient(135deg, #0071e3, #00c6ff);
-            color: white;
             padding: 24px;
             border-radius: var(--radius-lg);
-            font-style: italic;
-            margin: 16px 0;
-            box-shadow: 0 10px 20px rgba(0,113,227,0.2);
+            text-align: center;
+            transition: all 0.3s;
+        }
+        .tile i { font-size: 2.8rem; color: var(--brand); margin-bottom: 16px; display: block; }
+        .tile strong { display: block; margin-bottom: 4px; }
+        .tile span { font-size: 0.9rem; color: var(--text-muted); }
+
+        .warning-box { background: #fff2f2; border: 1px solid #ffdad6; border-radius: var(--radius-lg); padding: 24px; color: #410002; margin: 32px 0; }
+
+        .print-btn {
+            background: #1d1d1f;
+            color: white;
+            padding: 22px;
+            border-radius: 18px;
+            border: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            width: 100%;
+            cursor: pointer;
+            margin-top: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
         }
 
-        /* Print Style */
         @media print {
             .dock, header, .no-print { display: none !important; }
             .page { display: block !important; page-break-after: always; }
-            .card { box-shadow: none; border: 1px solid #eee; break-inside: avoid; }
+            .card { border: 1px solid #eee; box-shadow: none; break-inside: avoid; }
             body { background: white; font-size: 12pt; }
+        }
+
+        @media (max-width: 600px) {
+            h2 { font-size: 1.9rem; }
+            .card { padding: 24px; }
         }
     </style>
 </head>
 <body>
 
 <header>
-    <div><span class="dot"></span><h1>Digitaler Begleiter</h1></div>
-    <div style="font-size: 0.8rem; font-weight: 600; opacity: 0.5;">FÜR MAMA</div>
+    <div><span class="live-dot"></span><h1>Digitaler Begleiter</h1></div>
+    <div style="font-size: 0.8rem; font-weight: 600; opacity: 0.4;">PREMIUM MERGE</div>
 </header>
 
 <nav class="dock no-print">
-    <button class="nav-item active" onclick="showPage('welcome')"><i class="la la-home"></i><span>Start</span></button>
-    <button class="nav-item" onclick="showPage('device')"><i class="la la-cog"></i><span>Gerät</span></button>
-    <button class="nav-item" onclick="showPage('wifi')"><i class="la la-wifi"></i><span>WLAN</span></button>
+    <button class="nav-item active" onclick="showPage('welcome')"><i class="la la-star"></i><span>Start</span></button>
+    <button class="nav-item" onclick="showPage('basics')"><i class="la la-toggle-on"></i><span>System</span></button>
+    <button class="nav-item" onclick="showPage('connectivity')"><i class="la la-wifi"></i><span>Netz</span></button>
     <button class="nav-item" onclick="showPage('gestures')"><i class="la la-hand-pointer"></i><span>Gesten</span></button>
     <button class="nav-item" onclick="showPage('typing')"><i class="la la-keyboard"></i><span>Text</span></button>
-    <button class="nav-item" onclick="showPage('media')"><i class="la la-play-circle"></i><span>Medien</span></button>
+    <button class="nav-item" onclick="showPage('media')"><i class="la la-play-circle"></i><span>Freizeit</span></button>
     <button class="nav-item" onclick="showPage('family')"><i class="la la-users"></i><span>Familie</span></button>
     <button class="nav-item" onclick="showPage('gemini')"><i class="la la-brain"></i><span>Wissen</span></button>
     <button class="nav-item" onclick="showPage('help')"><i class="la la-shield-alt"></i><span>Hilfe</span></button>
@@ -201,127 +237,168 @@
 
 <div class="content-area">
 
-    <!-- WILLKOMMEN -->
+    <!-- SEITE: START -->
     <main id="welcome" class="page active">
-        <div class="card">
+        <div class="card card-accent">
             <h2>Gute Erholung.</h2>
-            <p>Dieses Tablet ist dein Fenster zur Außenwelt. Wir haben es so eingerichtet, dass du ganz einfach lesen, schauen und mit uns sprechen kannst.</p>
-            <div class="guide-box">
-                <strong>Erster Schritt:</strong>
-                <p style="margin-bottom: 0;">Lehne das Tablet am besten gegen ein Kissen auf deinem Nachttisch. So kannst du es im Liegen nutzen, ohne es halten zu müssen.</p>
-            </div>
+            <p>Wir haben dir dieses Tablet eingerichtet, damit du im Krankenhaus alles Wichtige griffbereit hast. Es ist einfach zu bedienen und voller schöner Dinge.</p>
+        </div>
+        <div class="card">
+            <h3><i class="la la-check-circle"></i> Erste Schritte</h3>
+            <div class="step-pill"><span class="step-id">1</span><span><b>Einschalten:</b> Drücke die Taste an der Seite, bis das Display hell wird.</span></div>
+            <div class="step-pill"><span class="step-id">2</span><span><b>Entsperren:</b> Streiche mit dem Finger von unten nach oben über den Bildschirm.</span></div>
+            <div class="step-pill"><span class="step-id">3</span><span><b>Haltung:</b> Lehne das Tablet gegen ein Kissen – das schont deine Arme im Liegen.</span></div>
         </div>
     </main>
 
-    <!-- GERÄT -->
-    <main id="device" class="page">
+    <!-- SEITE: BASICS (SYSTEM) -->
+    <main id="basics" class="page">
         <div class="card">
-            <h2>Dein Tablet.</h2>
+            <h2>Dein Tablet steuern.</h2>
+            <p>Die wichtigsten Einstellungen für deinen Komfort.</p>
+            
             <h3><i class="la la-sun"></i> Helligkeit & Augen</h3>
-            <div class="step-pill"><span class="step-id">01</span><span>Wische vom oberen Bildschirmrand nach unten.</span></div>
-            <div class="step-pill"><span class="step-id">02</span><span>Schiebe den Balken mit der Sonne nach links für gemütliches Licht.</span></div>
-            <div class="step-pill"><span class="step-id">03</span><span>Tippe auf <b>"Augenkomfort"</b>. Das macht das Bild wärmer und schont deine Augen am Abend.</span></div>
-
-            <h3><i class="la la-volume-up"></i> Lautstärke</h3>
-            <p>Nutze die lange Taste an der Seite: Oben für lauter, unten für leiser. Nutze im Zimmer immer deine Kopfhörer.</p>
-        </div>
-    </main>
-
-    <!-- WLAN -->
-    <main id="wifi" class="page">
-        <div class="card">
-            <h2>Internet.</h2>
-            <p>So verbindest du dich mit dem Krankenhaus-WLAN:</p>
-            <div class="guide-box" style="background: #fff8e1; border: 1px solid #ffe082;">
-                <i class="la la-lightbulb" style="color: #fbc02d; font-size: 2rem;"></i>
-                <b style="display: block; margin-top: 10px;">Der Profi-Trick:</b>
-                <span>Falls das Internet nicht geht: Öffne die App <b>Chrome</b> (der bunte Kreis) und tippe eine Adresse ein. Erst dann öffnet sich oft die Seite zum "Akzeptieren".</span>
+            <div class="module-box">
+                <i class="la la-sliders-h"></i>
+                <div>
+                    <b>So stellst du das Licht ein:</b>
+                    Wische von ganz oben nach unten. Schiebe den Balken mit der Sonne nach links für gemütliches Licht. Tippe auf <b>"Augenkomfort"</b>, wenn du abends liest.
+                </div>
             </div>
+
+            <h3><i class="la la-volume-up"></i> Töne & Lautstärke</h3>
+            <p>Die Taste an der rechten Seite: Oben ist lauter, unten ist leiser. Nutze im Zimmer bitte immer deine Kopfhörer.</p>
         </div>
     </main>
 
-    <!-- GESTEN -->
+    <!-- SEITE: NETZ (WLAN & BLUETOOTH) -->
+    <main id="connectivity" class="page">
+        <div class="card">
+            <h2>Immer verbunden.</h2>
+            <p>So nutzt du das Internet im Krankenhaus.</p>
+            
+            <div class="module-box" style="background: #fff8e1; border: 1px solid #ffe082;">
+                <i class="la la-lightbulb" style="color: #fbc02d;"></i>
+                <div>
+                    <b>Der Profi-Trick für das WLAN:</b>
+                    Wenn das Internet hakt: Öffne die App <b>Chrome</b> (der bunte Kreis) und tippe eine Adresse ein. Erst dann erscheint meist die Seite zum "Bestätigen" der Krankenhaus-Regeln.
+                </div>
+            </div>
+
+            <h3>Kopfhörer (Bluetooth)</h3>
+            <div class="step-pill"><span class="step-id">A</span><span>Schalte deine Kopfhörer ein (sie sollten blinken).</span></div>
+            <div class="step-pill"><span class="step-id">B</span><span>Wische von oben und halte das <b>Bluetooth-Symbol</b> gedrückt.</span></div>
+            <div class="step-pill"><span class="step-id">C</span><span>Tippe auf den Namen deiner Kopfhörer in der Liste.</span></div>
+        </div>
+    </main>
+
+    <!-- SEITE: GESTEN -->
     <main id="gestures" class="page">
         <div class="card">
-            <h2>Bedienung.</h2>
-            <p>Dein Finger ist wie die Maus am Computer.</p>
-            <div class="app-grid">
-                <div class="app-tile"><i class="la la-arrow-up"></i><b>Home</b><span>Unten hochwischen</span></div>
-                <div class="app-tile"><i class="la la-arrow-left"></i><b>Zurück</b><span>Vom Rand wischen</span></div>
-                <div class="app-tile"><i class="la la-search-plus"></i><b>Zoom</b><span>Auseinanderziehen</span></div>
-                <div class="app-tile"><i class="la la-layer-group"></i><b>Apps</b><span>Wischen & Halten</span></div>
+            <h2>Die Finger-Sprache.</h2>
+            <p>Das Tablet reagiert auf sanfte Berührungen, nicht auf starken Druck.</p>
+            
+            <div class="grid-3">
+                <div class="tile"><i class="la la-arrow-up"></i><strong>Nach Hause</strong><span>Von unten hochwischen</span></div>
+                <div class="tile"><i class="la la-arrow-left"></i><strong>Zurück</strong><span>Vom Rand zur Mitte</span></div>
+                <div class="tile"><i class="la la-search-plus"></i><strong>Vergrößern</strong><span>Auseinanderziehen</span></div>
             </div>
+
+            <h3>Der "Vorhang"</h3>
+            <p>Wische von ganz oben nach unten, um deine Nachrichten (WhatsApp, Mail) oder verpasste Anrufe zu sehen. Wische eine Nachricht zur Seite, um sie zu löschen.</p>
         </div>
     </main>
 
-    <!-- TIPPEN -->
+    <!-- SEITE: SCHREIBEN -->
     <main id="typing" class="page">
         <div class="card">
-            <h2>Schreiben.</h2>
-            <h3><i class="la la-microphone"></i> Reden statt Tippen</h3>
-            <p>Tippe in WhatsApp auf das kleine Mikrofon auf der Tastatur. Sprich einfach los – das Tablet schreibt jedes Wort für dich mit.</p>
-            
-            <h3><i class="la la-hand-pointer"></i> Wischen (Flow)</h3>
-            <p>Lasse deinen Finger einfach von Buchstabe zu Buchstabe gleiten, ohne ihn abzuheben. Das Tablet erkennt das Wort automatisch.</p>
+            <h2>Besser schreiben.</h2>
+            <p>Tippen ist oft mühsam. Nutze diese zwei Erleichterungen:</p>
+
+            <div class="module-box">
+                <i class="la la-microphone"></i>
+                <div>
+                    <b>Reden statt Tippen:</b>
+                    Tippe in WhatsApp auf das kleine Mikrofon auf der Tastatur. Sprich einfach los – das Tablet schreibt jedes Wort für dich mit.
+                </div>
+            </div>
+
+            <h3>Gleiten (SwiftKey)</h3>
+            <p>Lasse deinen Finger einfach von Buchstabe zu Buchstabe gleiten, ohne ihn abzuheben. Das Tablet erkennt das Wort automatisch. Probiere es mit "Alles Liebe".</p>
         </div>
     </main>
 
-    <!-- MEDIEN -->
+    <!-- SEITE: MEDIEN -->
     <main id="media" class="page">
         <div class="card">
-            <h2>Freizeit.</h2>
-            <p>Gegen die Langeweile haben wir alles vorbereitet:</p>
-            <div class="app-grid">
-                <div class="app-tile"><i class="la la-tv"></i><b>ARD & ZDF</b><span>Filme & Krimis</span></div>
-                <div class="app-tile"><i class="la la-newspaper"></i><b>Zeitungen</b><span>In Chrome lesen</span></div>
-                <div class="app-tile"><i class="la la-broadcast-tower"></i><b>Radio</b><span>Alle Sender</span></div>
-                <div class="app-tile"><i class="la la-book"></i><b>Bücher</b><span>Kindle & Tolino</span></div>
+            <h2>Freizeit & Unterhaltung.</h2>
+            <p>Gegen die Langeweile ist alles vorbereitet.</p>
+            
+            <div class="grid-3">
+                <div class="tile"><i class="la la-tv"></i><strong>Fernsehen</strong><span>ARD & ZDF Mediathek</span></div>
+                <div class="tile"><i class="la la-newspaper"></i><strong>Nachrichten</strong><span>Zeitungen in Chrome</span></div>
+                <div class="tile"><i class="la la-broadcast-tower"></i><strong>Radio</strong><span>Alle Sender weltweit</span></div>
+                <div class="tile"><i class="la la-book"></i><strong>Bücher</strong><span>Kindle & Play Books</span></div>
+            </div>
+
+            <div class="module-box">
+                <i class="la la-times-circle"></i>
+                <div>
+                    <b>Werbung wegklicken:</b>
+                    Suche bei störenden Fenstern im Browser immer nach dem kleinen "X" in einer der oberen Ecken.
+                </div>
             </div>
         </div>
     </main>
 
-    <!-- FAMILIE -->
+    <!-- SEITE: FAMILIE -->
     <main id="family" class="page">
         <div class="card">
-            <h2>Kontakt.</h2>
-            <p>Wir freuen uns über jede Nachricht!</p>
-            <h3><i class="la la-video"></i> Video-Anruf</h3>
-            <p>Tippe in WhatsApp oben rechts auf die kleine Kamera. So können wir uns gegenseitig sehen.</p>
+            <h2>Deine Familie.</h2>
+            <p>Wir sind nur einen Fingertipp entfernt.</p>
             
-            <h3><i class="la la-users"></i> Google Meet</h3>
-            <p>Wenn wir alle gleichzeitig mit dir sprechen wollen, schicken wir dir einen Link. Tippe darauf und klicke auf "Teilnehmen".</p>
+            <div class="grid-3">
+                <div class="tile"><i class="la la-video"></i><strong>Video-Anruf</strong><span>Kamera oben rechts</span></div>
+                <div class="tile"><i class="la la-microphone-alt"></i><strong>Sprachnachricht</strong><span>Mikro gedrückt halten</span></div>
+                <div class="tile"><i class="la la-image"></i><strong>Fotos senden</strong><span>Büroklammer -> Galerie</span></div>
+            </div>
+
+            <h3>Google Meet</h3>
+            <p>Wenn wir uns alle gleichzeitig sehen wollen, schicken wir dir einen blauen Link. Tippe darauf und klicke auf "Teilnehmen".</p>
         </div>
     </main>
 
-    <!-- WISSEN -->
+    <!-- SEITE: WISSEN -->
     <main id="gemini" class="page">
         <div class="card">
-            <h2>Wissen.</h2>
-            <p>Gemini ist dein persönlicher Experte für alle Fragen.</p>
-            <div class="prompt-card">
-                "Erklär mir diesen medizinischen Befund ganz einfach ohne Fachwörter..."
+            <h2>Wissen & Fragen.</h2>
+            <p>Gemini ist dein persönlicher Experte, der dir alles geduldig erklärt.</p>
+            
+            <div style="background: #e9f0ff; color: #004a99; padding: 24px; border-radius: 20px; font-style: italic; margin-bottom: 24px;">
+                "Erklär mir diesen Fachbegriff ganz einfach..."<br><br>
+                "Schreib eine nette Nachricht an meine Nachbarn..."<br><br>
+                "Erzähl mir etwas Spannendes über die Geschichte von..."
             </div>
-            <div class="prompt-card">
-                "Schreib eine nette Nachricht an meine Nachbarn..."
-            </div>
-            <p>Tippe auf das blaue Sternen-Symbol auf deinem Bildschirm, um Gemini zu fragen.</p>
+            
+            <p>Tippe auf das bunte Sternen-Symbol (Gemini) und nutze dort das Mikrofon, um deine Frage einfach laut zu stellen.</p>
         </div>
     </main>
 
-    <!-- HILFE -->
+    <!-- SEITE: HILFE -->
     <main id="help" class="page">
         <div class="card">
-            <h2>Hilfe & Schutz.</h2>
-            <div class="guide-box" style="background: #fff5f5; border: 1px solid #feb2b2;">
-                <b style="color: #c53030;">Achtung vor Spam:</b>
-                <p style="color: #c53030; font-size: 0.95rem;">DHL oder die Bank fragen dich niemals per Mail nach Geld oder Passwörtern. Im Zweifel einfach löschen!</p>
+            <h2>Sicherheit & Hilfe.</h2>
+            
+            <div class="warning-box">
+                <b>Achtung vor Betrügern!</b>
+                <p style="margin-top: 10px; font-size: 1.05rem;">Banken oder Paketdienste (DHL) fragen dich <b>niemals</b> per Mail nach Passwörtern oder Geld. Lösche solche Nachrichten im Zweifel einfach.</p>
             </div>
+
+            <h3>Der 15-Sekunden-Trick</h3>
+            <p>Wenn das Tablet "hängt": Halte die Ein/Aus-Taste an der Seite 15 Sekunden lang fest gedrückt. Das Gerät startet neu und alles ist wieder gut.</p>
             
-            <h3>Der Neustart</h3>
-            <p>Wenn das Tablet nicht reagiert: Halte den Ein-Knopf 15 Sekunden lang fest, bis es neu startet.</p>
-            
-            <button class="no-print" onclick="window.print()" style="width:100%; padding:20px; background:#1d1d1f; color:white; border-radius:15px; border:none; font-weight:700; cursor:pointer; margin-top:30px;">
-                <i class="la la-print"></i> Handbuch drucken
+            <button class="print-btn no-print" onclick="window.print()">
+                <i class="la la-print"></i> Gesamtes Handbuch drucken
             </button>
         </div>
     </main>
@@ -333,7 +410,9 @@
         document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
         document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
         
-        document.getElementById(pageId).classList.add('active');
+        const target = document.getElementById(pageId);
+        if (target) target.classList.add('active');
+        
         const btn = Array.from(document.querySelectorAll('.nav-item'))
                          .find(b => b.getAttribute('onclick').includes(pageId));
         if (btn) btn.classList.add('active');
