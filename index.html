@@ -107,6 +107,10 @@
         .gemini-box { background: #e3f2fd; border-left: 8px solid var(--gemini); padding: 15px; border-radius: 8px; margin: 20px 0; }
         .store-box { background: #e0f2f1; border-left: 8px solid var(--store); padding: 15px; border-radius: 8px; margin: 20px 0; }
         .alert-box { background: #fff3e0; border-left: 8px solid #ff9800; padding: 15px; border-radius: 8px; margin: 20px 0; }
+        
+        .app-list { list-style: none; padding: 0; }
+        .app-list li { background: #f9f9f9; padding: 15px; margin-bottom: 10px; border-radius: 8px; border-left: 5px solid var(--store); display: flex; align-items: center; }
+        .app-list strong { min-width: 140px; display: inline-block; color: var(--primary); }
 
         .example-prompt {
             background: #fff;
@@ -236,7 +240,7 @@
             <div class="example-prompt">"Erklär mir den Begriff 'Kardiologie' ganz einfach."</div>
             
             <p>2. <strong>Hilfe beim Formulieren:</strong></p>
-            <div class="example-prompt">"Schreib eine freundliche WhatsApp, dass es mir gut geht und ich mich über Besuch freue."</div>
+            <div class="example-prompt">"Schreib eine freundliche E-Mail, dass es mir gut geht und ich mich über Besuch freue."</div>
             
             <p>3. <strong>Unterhaltung & Wissen:</strong></p>
             <div class="example-prompt">"Erzähl mir etwas Interessantes über die Geschichte von Berlin."</div>
@@ -251,13 +255,47 @@
 <!-- PLAY STORE -->
 <main id="store" class="page">
     <div class="card">
-        <h2>Neue Apps finden</h2>
+        <h2>Neue Apps finden (Play Store)</h2>
         <p>Im <strong>Play Store</strong> (buntes Dreieck) findest du alles, was du brauchst.</p>
-        <div class="step"><div class="step-num">1</div><div>Tippe oben in die Suche (z.B. "Rätsel" oder "Zeitung").</div></div>
-        <div class="step"><div class="step-num">2</div><div>Klicke auf eine App, die dir gefällt.</div></div>
+        <div class="step"><div class="step-num">1</div><div>Tippe oben in die Suche (z.B. "Zeitung").</div></div>
+        <div class="step"><div class="step-num">2</div><div>Klicke auf die gewünschte App.</div></div>
         <div class="step"><div class="step-num">3</div><div>Tippe auf <strong>Installieren</strong>.</div></div>
+    </div>
+
+    <div class="card">
+        <h3>Mamas Lieblings-Apps für das Tablet</h3>
+        <p>Wir haben gesehen, was du am Computer gerne nutzt. Lade dir diese Apps auf das Tablet herunter, dann geht vieles im Bett noch leichter:</p>
+        
+        <ul class="app-list">
+            <li>
+                <strong>🛒 Einkaufen:</strong> 
+                <div>
+                    <b>eBay</b> und <b>Amazon</b> (für bequemes Stöbern)<br>
+                    <b>ALDI</b>, <b>REWE</b> und <b>Kaufland</b> (Prospekte digital lesen)
+                </div>
+            </li>
+            <li>
+                <strong>⚕️ Gesundheit:</strong> 
+                <div>
+                    <b>DocMorris</b> oder <b>medpex</b> (So kannst du deine E-Rezepte direkt vom Bett aus einlösen und bestellen!)
+                </div>
+            </li>
+            <li>
+                <strong>📦 Pakete:</strong> 
+                <div>
+                    <b>DHL Paket</b> App (damit siehst du immer, wo deine Bestellungen gerade sind).
+                </div>
+            </li>
+            <li>
+                <strong>💶 Finanzen:</strong> 
+                <div>
+                    <b>Sparkasse</b> und <b>PayPal</b> (um auch im Krankenhaus den Überblick zu behalten).
+                </div>
+            </li>
+        </ul>
+        
         <div class="store-box">
-            <strong>Sicherheit:</strong> Kostenlose Apps haben nur den Knopf "Installieren". Wenn eine App etwas kostet, steht der Preis direkt dabei.
+            <strong>Sicherheit:</strong> Achte beim Installieren von Bank- oder Apotheken-Apps immer darauf, dass sie vom Original-Anbieter stammen. Deine Passwörter bleiben gleich wie am Computer!
         </div>
     </div>
 </main>
@@ -274,7 +312,17 @@
 <main id="family" class="page">
     <div class="card">
         <h2>Kontakt zu uns ❤️</h2>
-        <p>In WhatsApp oben rechts auf das <strong>Kamera-Symbol</strong> tippen für einen Videoanruf. Wir freuen uns, dich zu sehen!</p>
+        
+        <h3>1. Video-Anruf mit WhatsApp</h3>
+        <p>Tippe in WhatsApp in unserem Chat oben rechts auf das <strong>Kamera-Symbol</strong>. So können wir uns gegenseitig sehen!</p>
+
+        <h3>2. Familien-Treffen mit Google Meet</h3>
+        <p>Manchmal rufen wir dich über <strong>Google Meet</strong> an, damit alle (z.B. auch Martin) gleichzeitig auf dem Bildschirm sein können.</p>
+        <div class="step"><div class="step-num">📹</div><div>Wenn du von uns einen blauen Link geschickt bekommst (z.B. per WhatsApp oder Mail), tippe einfach darauf.</div></div>
+        <div class="step"><div class="step-num">📞</div><div>Die <strong>Meet App</strong> (Kamera mit bunten Rändern) öffnet sich. Tippe dann einfach auf den Knopf <strong>"Teilnehmen"</strong>.</div></div>
+        <div class="tip-box">
+            <strong>Tipp für Anrufe:</strong> Lehne das Tablet an ein Kissen auf deinem Nachttisch, damit du es nicht die ganze Zeit in der Hand halten musst und wir dich gut sehen können.
+        </div>
     </div>
 </main>
 
