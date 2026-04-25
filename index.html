@@ -2,48 +2,64 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Samsung Begleiter — Edition A11+</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="description" content="Dein Samsung Galaxy A11 Handbuch - gemacht für ältere Menschen mit großen Texten und einfacher Bedienung.">
+    <meta name="theme-color" content="#0071e3">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Samsung Galaxy A11">
     <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#ffffff">
-    
-    <!-- Premium Assets -->
+    <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect fill='%230071e3' width='180' height='180' rx='30'/%3E%3Cpath fill='white' d='M90 35c-30.9 0-56 25.1-56 56s25.1 56 56 56 56-25.1 56-56-25.1-56-56-56zm0 96c-22.1 0-40-17.9-40-40s17.9-40 40-40 40 17.9 40 40-17.9 40-40 40z'/%3E%3C/svg%3E">
+    <title>Samsung Galaxy A11 Handbuch</title>
     <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #fbfbfb;
+            --bg: #f8f9fa;
             --surface: #ffffff;
             --text-main: #1d1d1f;
-            --text-muted: #86868b;
-            --samsung-blue: #034ea2;
+            --text-muted: #6b7280;
             --brand: #0071e3;
-            --dock: rgba(29, 29, 31, 0.9);
-            --border: rgba(0,0,0,0.06);
-            --radius-app: 30px;
-            --radius-lg: 22px;
-            --shadow-premium: 0 15px 45px rgba(0,0,0,0.06);
+            --brand-light: #e8f2fe;
+            --dock: rgba(29, 29, 31, 0.92);
+            --border: rgba(0, 0, 0, 0.08);
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --radius-lg: 20px;
+            --radius-md: 14px;
+            --radius-sm: 10px;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.1);
         }
 
-        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html {
+            font-size: 18px;
+        }
 
         body {
-            font-family: 'Inter', -apple-system, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             margin: 0;
             padding: 0;
             background-color: var(--bg);
             color: var(--text-main);
-            font-size: 1.25rem;
-            line-height: 1.55;
+            line-height: 1.6;
             -webkit-font-smoothing: antialiased;
+            padding-bottom: 140px;
         }
 
         header {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: saturate(180%) blur(20px);
-            -webkit-backdrop-filter: saturate(180%) blur(20px);
-            padding: 24px 32px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 16px 24px;
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -53,322 +69,1238 @@
             justify-content: space-between;
         }
 
-        header h1 { font-size: 1.1rem; font-weight: 700; margin: 0; letter-spacing: -0.01em; color: var(--samsung-blue); }
-        .device-badge { font-size: 0.7rem; font-weight: 800; background: #eee; padding: 4px 12px; border-radius: 50px; opacity: 0.7; }
+        header h1 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin: 0;
+            color: var(--brand);
+        }
+
+        .header-icon {
+            width: 44px;
+            height: 44px;
+            background: var(--brand-light);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .header-icon i {
+            font-size: 1.4rem;
+            color: var(--brand);
+        }
 
         nav.dock {
             position: fixed;
-            bottom: 24px;
+            bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
             background: var(--dock);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             display: flex;
-            padding: 8px;
-            border-radius: 32px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            padding: 6px;
+            border-radius: 26px;
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.25);
             z-index: 2000;
             width: 94%;
-            max-width: 850px;
+            max-width: 720px;
             overflow-x: auto;
             scrollbar-width: none;
-            gap: 2px;
+            gap: 3px;
         }
-        nav.dock::-webkit-scrollbar { display: none; }
+
+        nav.dock::-webkit-scrollbar {
+            display: none;
+        }
 
         .nav-item {
             background: none;
             border: none;
-            color: rgba(255,255,255,0.45);
+            color: rgba(255, 255, 255, 0.55);
             display: flex;
             flex-direction: column;
             align-items: center;
-            font-size: 0.65rem;
+            font-size: 0.7rem;
             font-weight: 600;
             cursor: pointer;
-            min-width: 75px;
-            padding: 12px 0;
-            border-radius: 24px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            min-width: 60px;
+            padding: 12px 8px;
+            border-radius: 18px;
+            transition: all 0.2s ease;
         }
 
-        .nav-item i { font-size: 1.8rem; margin-bottom: 5px; }
-        .nav-item.active { color: #ffffff; background: rgba(255,255,255,0.12); }
-        .nav-item:active { transform: scale(0.9); }
+        .nav-item i {
+            font-size: 1.7rem;
+            margin-bottom: 4px;
+        }
+
+        .nav-item.active {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .nav-item:active {
+            transform: scale(0.95);
+        }
 
         .content-area {
-            max-width: 850px;
+            max-width: 800px;
             margin: 0 auto;
-            padding: 40px 24px 180px 24px;
+            padding: 24px 20px 160px 20px;
         }
 
-        .page { display: none; }
-        .page.active { display: block; animation: slideReveal 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
-        @keyframes slideReveal { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
         .card {
             background: var(--surface);
-            border-radius: var(--radius-app);
-            padding: 40px;
-            margin-bottom: 24px;
-            box-shadow: var(--shadow-premium);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
             border: 1px solid var(--border);
         }
 
-        h2 { font-size: 2.2rem; font-weight: 700; margin: 0 0 16px 0; letter-spacing: -0.04em; }
-        h3 { font-size: 1.4rem; font-weight: 600; margin: 48px 0 20px 0; display: flex; align-items: center; gap: 14px; }
-        h3 i { color: var(--samsung-blue); font-size: 2rem; }
-
-        p { color: var(--text-muted); font-size: 1.2rem; margin-bottom: 24px; }
-
-        .samsung-box {
-            background: #eef4ff;
-            border-radius: var(--radius-lg);
-            padding: 24px;
-            margin: 24px 0;
-            border-left: 6px solid var(--samsung-blue);
+        .card-highlight {
+            background: linear-gradient(135deg, var(--brand) 0%, #00a3ff 100%);
+            color: white;
+            border: none;
         }
 
-        .step-pill {
+        .card-highlight h2, .card-highlight h3, .card-highlight p {
+            color: white;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 0 0 16px 0;
+            letter-spacing: -0.02em;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin: 32px 0 14px 0;
             display: flex;
             align-items: center;
-            gap: 20px;
-            padding: 20px 0;
-            border-bottom: 1px solid rgba(0,0,0,0.04);
-        }
-        .step-pill:last-child { border: none; }
-        .step-id { 
-            background: var(--samsung-blue); 
-            color: white; 
-            width: 32px; 
-            height: 32px; 
-            border-radius: 10px; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            font-weight: 800; 
-            font-size: 0.9rem;
+            gap: 12px;
         }
 
-        .grid-2 {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
-            margin: 24px 0;
+        h3 i {
+            color: var(--brand);
+            font-size: 1.5rem;
         }
 
-        .tile {
-            background: #ffffff;
-            border: 1px solid var(--border);
-            padding: 24px;
-            border-radius: var(--radius-lg);
-            text-align: center;
-        }
-        .tile i { font-size: 2.8rem; color: var(--samsung-blue); margin-bottom: 16px; display: block; }
-        .tile strong { display: block; margin-bottom: 4px; }
-
-        .print-btn {
-            background: var(--text-main);
+        .card-highlight h3 i {
             color: white;
-            padding: 22px;
-            border-radius: 20px;
-            border: none;
-            font-weight: 700;
+        }
+
+        p {
+            color: var(--text-muted);
+            margin-bottom: 18px;
             font-size: 1.1rem;
-            width: 100%;
-            cursor: pointer;
-            margin-top: 40px;
+        }
+
+        .card-highlight p {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .guide-box {
+            background: #f3f4f6;
+            border-radius: var(--radius-md);
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .step-box {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 18px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .step-box:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .step-number {
+            background: var(--brand);
+            color: white;
+            font-weight: 700;
+            min-width: 32px;
+            height: 32px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 0.95rem;
+        }
+
+        .step-content {
+            flex: 1;
+        }
+
+        .step-title {
+            font-weight: 600;
+            margin-bottom: 4px;
+            font-size: 1.05rem;
+        }
+
+        .step-text {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        .app-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
             gap: 14px;
+            margin-top: 20px;
+        }
+
+        .app-tile {
+            background: white;
+            padding: 20px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border);
+            text-align: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .app-tile:active {
+            transform: scale(0.97);
+        }
+
+        .app-tile i {
+            font-size: 2.2rem;
+            color: var(--brand);
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .app-tile b {
+            font-size: 1rem;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .app-tile span {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .tip-box {
+            background: #fef3c7;
+            border: 1px solid #fcd34d;
+            border-radius: var(--radius-md);
+            padding: 18px;
+            margin: 18px 0;
+        }
+
+        .tip-box.tip-green {
+            background: #d1fae5;
+            border-color: #6ee7b7;
+        }
+
+        .tip-box.tip-red {
+            background: #fee2e2;
+            border-color: #fca5a5;
+        }
+
+        .tip-box i {
+            color: var(--warning);
+            font-size: 1.4rem;
+            margin-right: 8px;
+        }
+
+        .tip-box.tip-green i {
+            color: var(--success);
+        }
+
+        .tip-box.tip-red i {
+            color: var(--danger);
+        }
+
+        .question-box {
+            background: var(--brand-light);
+            border-radius: var(--radius-md);
+            padding: 20px;
+            margin: 18px 0;
+            border-left: 4px solid var(--brand);
+        }
+
+        .question-box strong {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--brand);
+        }
+
+        button.action-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            width: 100%;
+            padding: 18px 24px;
+            background: var(--brand);
+            color: white;
+            border: none;
+            border-radius: var(--radius-md);
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: 16px;
+        }
+
+        button.action-btn:active {
+            transform: scale(0.98);
+        }
+
+        button.action-btn.secondary {
+            background: white;
+            color: var(--brand);
+            border: 2px solid var(--brand);
+        }
+
+        .offline-indicator {
+            display: none;
+            position: fixed;
+            top: 70px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--warning);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            z-index: 3000;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .offline-indicator.show {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .device-image {
+            background: #f0f0f0;
+            border-radius: var(--radius-md);
+            padding: 30px;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .device-image i {
+            font-size: 4rem;
+            color: var(--text-muted);
         }
 
         @media print {
-            .dock, header, .no-print { display: none !important; }
-            .page { display: block !important; page-break-after: always; }
-            .card { box-shadow: none; border: 1px solid #eee; break-inside: avoid; }
-            body { background: white; font-size: 12pt; }
+            .dock, header, .no-print, nav.dock, .offline-indicator {
+                display: none !important;
+            }
+            .page {
+                display: block !important;
+                page-break-after: always;
+            }
+            .card {
+                box-shadow: none;
+                border: 1px solid #ddd;
+            }
+            body {
+                background: white;
+                font-size: 11pt;
+            }
+        }
+
+        @media (max-width: 480px) {
+            html {
+                font-size: 16px;
+            }
+            .app-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+            .card {
+                padding: 20px;
+            }
+            h2 {
+                font-size: 1.5rem;
+            }
         }
     </style>
 </head>
 <body>
 
-<header>
-    <div><h1>Galaxy Begleiter</h1></div>
-    <div class="device-badge">GALAXY TAB A11+</div>
-</header>
+    <div class="offline-indicator" id="offlineIndicator">
+        <i class="la la-wifi"></i>
+        <span>Offline - wird trotzdem funktionieren</span>
+    </div>
 
-<nav class="dock no-print">
-    <button class="nav-item active" onclick="showPage('welcome')"><i class="la la-star"></i><span>Start</span></button>
-    <button class="nav-item" onclick="showPage('samsung')"><i class="la la-tablet"></i><span>Galaxy</span></button>
-    <button class="nav-item" onclick="showPage('wifi')"><i class="la la-wifi"></i><span>Netz</span></button>
-    <button class="nav-item" onclick="showPage('gestures')"><i class="la la-hand-pointer"></i><span>Gesten</span></button>
-    <button class="nav-item" onclick="showPage('typing')"><i class="la la-keyboard"></i><span>Text</span></button>
-    <button class="nav-item" onclick="showPage('media')"><i class="la la-play-circle"></i><span>Medien</span></button>
-    <button class="nav-item" onclick="showPage('family')"><i class="la la-users"></i><span>Familie</span></button>
-    <button class="nav-item" onclick="showPage('gemini')"><i class="la la-brain"></i><span>Wissen</span></button>
-    <button class="nav-item" onclick="showPage('help')"><i class="la la-shield-alt"></i><span>Hilfe</span></button>
-</nav>
-
-<div class="content-area">
-
-    <!-- WILLKOMMEN -->
-    <main id="welcome" class="page active">
-        <div class="card" style="background: linear-gradient(145deg, #034ea2, #0071e3); color: white; border: none;">
-            <h2>Hallo Mama.</h2>
-            <p style="color: rgba(255,255,255,0.9);">Dein neues Samsung Galaxy Tab A11+ ist das perfekte Gerät für deine Zeit im Krankenhaus. Es ist schnell, hat ein tolles Display und wir haben es speziell für dich eingerichtet.</p>
+    <header>
+        <div style="display:flex;align-items:center;gap:12px;">
+            <div class="header-icon">
+                <i class="la la-mobile"></i>
+            </div>
+            <h1>Galaxy A11</h1>
         </div>
-        <div class="card">
-            <h3><i class="la la-check-circle"></i> Samsung Schnell-Start</h3>
-            <div class="step-pill"><span class="step-id">1</span><span><b>Einschalten:</b> Drücke die Taste an der Seite ca. 2 Sekunden.</span></div>
-            <div class="step-pill"><span class="step-id">2</span><span><b>Entsperren:</b> Streiche einfach von unten nach oben über das Glas.</span></div>
-            <div class="step-pill"><span class="step-id">3</span><span><b>Taskleiste:</b> Achte auf die Leiste ganz unten – dort findest du deine wichtigsten Apps immer griffbereit.</span></div>
+        <div style="font-size:0.85rem;font-weight:600;color:var(--text-muted);">
+            FÜR MAMA
         </div>
-    </main>
+    </header>
 
-    <!-- SAMSUNG SPECIFICS -->
-    <main id="samsung" class="page">
-        <div class="card">
-            <h2>Samsung Besonderheiten.</h2>
-            <p>Dein Galaxy Tab hat ein paar schlaue Funktionen, die dir das Leben leichter machen.</p>
-            
-            <h3><i class="la la-window-restore"></i> Die Taskleiste</h3>
-            <p>Genau wie an deinem Chromebook siehst du unten in jeder App eine kleine Leiste. Tippe dort einfach auf ein Symbol, um schnell zwischen WhatsApp, Chrome und deinen Spielen zu wechseln.</p>
+    <nav class="dock no-print">
+        <button class="nav-item active" data-page="start"><i class="la la-home"></i><span>Start</span></button>
+        <button class="nav-item" data-page="kennenlernen"><i class="la la-eye"></i><span>Kennen</span></button>
+        <button class="nav-item" data-page="einschalten"><i class="la la-power-off"></i><span>An/Aus</span></button>
+        <button class="nav-item" data-page="gestures"><i class="la la-hand-pointer"></i><span>Tippen</span></button>
+        <button class="nav-item" data-page="home"><i class="la la-th-large"></i><span>Home</span></button>
+        <button class="nav-item" data-page="helligkeit"><i class="la la-sun"></i><span>Display</span></button>
+        <button class="nav-item" data-page="wifi"><i class="la la-wifi"></i><span>WLAN</span></button>
+        <button class="nav-item" data-page="apps"><i class="la la-android"></i><span>Apps</span></button>
+        <button class="nav-item" data-page="kamera"><i class="la la-camera"></i><span>Kamera</span></button>
+        <button class="nav-item" data-page="whatsapp"><i class="la la-comments"></i><span>Nachricht</span></button>
+        <button class="nav-item" data-page="videoanruf"><i class="la la-video-camera"></i><span>Video</span></button>
+        <button class="nav-item" data-page="hilfe"><i class="la la-life-bouy"></i><span>Hilfe</span></button>
+    </nav>
 
-            <h3><i class="la la-indent"></i> Das Seiten-Paneel</h3>
-            <div class="samsung-box">
-                <b>Der geheime Griff:</b>
-                Am rechten Rand des Bildschirms siehst du einen ganz feinen, grauen Strich. Ziehe diesen zur Mitte des Bildschirms, um deine Lieblings-Apps sofort zu öffnen, egal wo du gerade bist.
+    <div class="content-area">
+
+        <main id="start" class="page active">
+            <div class="card card-highlight">
+                <h2>Willkommen!</h2>
+                <p>Das ist dein Samsung Galaxy A11 Handbuch. Hier ist alles einfach erklärt.</p>
+                <div class="tip-box" style="background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.3);">
+                    <i class="la la-heart" style="color:white;"></i>
+                    <span style="color:white;">Du kannst alles in Ruhe ausprobieren. Es geht nichts kaputt.</span>
+                </div>
             </div>
 
-            <h3><i class="la la-columns"></i> Zwei Apps gleichzeitig</h3>
-            <p>Du kannst z.B. links ein Video schauen und rechts WhatsApp offen haben. Ziehe dazu einfach eine App aus der Taskleiste oder dem Seiten-Paneel in die Mitte des Bildschirms.</p>
-        </div>
-    </main>
-
-    <!-- WLAN -->
-    <main id="wifi" class="page">
-        <div class="card">
-            <h2>Internet & Verbindung.</h2>
-            <p>Das Samsung-WLAN ist sehr zuverlässig. So nutzt du es:</p>
-            <div class="samsung-box" style="background: #fff8e1; border-color: #fbc02d;">
-                <i class="la la-lightbulb" style="color: #fbc02d; font-size: 2rem;"></i>
-                <b style="display: block; margin-top: 10px;">Der Krankenhaus-Trick:</b>
-                <span>Sollte das WLAN "verbunden" sein, aber nichts laden: Öffne die App <b>Samsung Internet</b> oder <b>Chrome</b>. Meist erscheint erst dann die "Anmelde-Seite" des Krankenhauses, wo du auf "OK" oder "Akzeptieren" klicken musst.</span>
+            <div class="card">
+                <h3><i class="la la-mobile"></i> Dein Galaxy A11</h3>
+                <p>Das Samsung Galaxy A11 hat:</p>
+                <div class="app-grid">
+                    <div class="app-tile">
+                        <i class="la la-tablet"></i>
+                        <b>6,4 Zoll</b>
+                        <span>Großer Bildschirm</span>
+                    </div>
+                    <div class="app-tile">
+                        <i class="la la-camera"></i>
+                        <b>13 MP Kamera</b>
+                        <span>Rückseite</span>
+                    </div>
+                    <div class="app-tile">
+                        <i class="la la-user"></i>
+                        <b>8 MP Front</b>
+                        <span>Selfies</span>
+                    </div>
+                    <div class="app-tile">
+                        <i class="la la-battery-full"></i>
+                        <b>4000 mAh</b>
+                        <span>Lange Akku</span>
+                    </div>
+                </div>
             </div>
-        </div>
-    </main>
 
-    <!-- GESTEN -->
-    <main id="gestures" class="page">
-        <div class="card">
-            <h2>Die Samsung Gesten.</h2>
-            <div class="grid-2">
-                <div class="tile"><i class="la la-arrow-up"></i><strong>Home</strong><span>Von unten wischen</span></div>
-                <div class="tile"><i class="la la-arrow-left"></i><strong>Zurück</strong><span>Vom Rand wischen</span></div>
-                <div class="tile"><i class="la la-search-plus"></i><strong>Zoom</strong><span>Auseinanderziehen</span></div>
-                <div class="tile"><i class="la la-history"></i><strong>Alle Apps</strong><span>Hochwischen & halten</span></div>
+            <div class="card">
+                <h3><i class="la la-rocket"></i> Erste Schritte</h3>
+                <div class="step-box">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <div class="step-title">Einschalten</div>
+                        <div class="step-text">Drücke lange auf die Taste an der RECHTEN Seite.</div>
+                    </div>
+                </div>
+                <div class="step-box">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <div class="step-title">Entsperren</div>
+                        <div class="step-text">Streiche nach oben auf dem Bildschirm.</div>
+                    </div>
+                </div>
+                <div class="step-box">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <div class="step-title">Loslegen</div>
+                        <div class="step-text">Tippe unten auf einen Button.</div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </main>
 
-    <!-- TIPPEN -->
-    <main id="typing" class="page">
-        <div class="card">
-            <h2>Besser schreiben.</h2>
-            <p>Die Samsung-Tastatur ist sehr großzügig eingestellt.</p>
-
-            <h3><i class="la la-microphone"></i> Diktieren (Sprechen)</h3>
-            <p>Tippe in ein Textfeld. Oben auf der Tastatur siehst du ein kleines <b>Mikrofon-Symbol</b>. Tippe darauf und sprich einfach. Das Tablet schreibt alles für dich mit.</p>
-            
-            <h3><i class="la la-hand-pointer"></i> Wischen (Flow)</h3>
-            <p>Du musst nicht tippen. Gleite mit dem Finger über die Buchstaben (z.B. von H zu A zu L zu L zu O) und das Wort "Hallo" erscheint wie von Geisterhand.</p>
-        </div>
-    </main>
-
-    <!-- MEDIEN -->
-    <main id="media" class="page">
-        <div class="card">
-            <h2>Deine Unterhaltung.</h2>
-            <div class="grid-2">
-                <div class="tile"><i class="la la-tv"></i><strong>Mediatheken</strong><span>ARD & ZDF</span></div>
-                <div class="tile"><i class="la la-chrome"></i><strong>Nachrichten</strong><span>Samsung Internet</span></div>
-                <div class="tile"><i class="la la-broadcast-tower"></i><strong>Radio</strong><span>Radio.de App</span></div>
-                <div class="tile"><i class="la la-book"></i><strong>Bücher</strong><span>Kindle App</span></div>
+            <div class="question-box">
+                <strong>Noch Fragen?</strong>
+                Gehe zu "Hilfe" am Ende der Liste.
             </div>
-            <div class="samsung-box">
-                <b>Tipp:</b> Dein Tablet hat einen tollen Ton. Nutze aber im Krankenhaus immer deine Kopfhörer, um die Nachbarn nicht zu stören.
+        </main>
+
+        <main id="kennenlernen" class="page">
+            <div class="card">
+                <h2>Das Gerät kennenlernen</h2>
+                <p>Hier siehst du, wo alles ist.</p>
             </div>
-        </div>
-    </main>
 
-    <!-- FAMILIE -->
-    <main id="family" class="page">
-        <div class="card">
-            <h2>Wir sind nah bei dir.</h2>
-            <h3><i class="la la-video"></i> Video-Anrufe</h3>
-            <p>Tippe in WhatsApp oben rechts auf die kleine Kamera. Durch das große Display des A11+ kannst du uns fast in Lebensgröße sehen!</p>
-            
-            <h3><i class="la la-users"></i> Google Meet</h3>
-            <p>Für unsere Familien-Treffen schicken wir dir einen Link. Einfach antippen und auf "Teilnehmen" klicken.</p>
-        </div>
-    </main>
-
-    <!-- WISSEN -->
-    <main id="gemini" class="page">
-        <div class="card">
-            <h2>Wissen & Fragen.</h2>
-            <p>Gemini ist dein Assistent für alles.</p>
-            <div style="background: #e9f0ff; color: #034ea2; padding: 24px; border-radius: 20px; font-style: italic; margin-bottom: 24px;">
-                "Erklär mir diesen Fachbegriff ganz einfach..."<br><br>
-                "Schreib eine nette Nachricht an meine Nachbarn..."<br><br>
-                "Was kann ich im Krankenhaus gegen Langeweile tun?"
+            <div class="card">
+                <h3><i class="la la-mobile"></i> Tasten und Anschlüsse</h3>
+                <div class="step-box">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <div class="step-title">Ein/Aus (Seitentaste)</div>
+                        <div class="step-text">Rechte Seite OBEN. Kurz drücken = Bildschirm an/aus. Lang = Ausschalten.</div>
+                    </div>
+                </div>
+                <div class="step-box">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <div class="step-title">Lauter / Leiser</div>
+                        <div class="step-text">Rechte Seite UNTEN. Oben = lauter, unten = leiser.</div>
+                    </div>
+                </div>
+                <div class="step-box">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <div class="step-title">USB Anschluss</div>
+                        <div class="step-text">Unten in der Mitte. Für das Ladegerät.</div>
+                    </div>
+                </div>
+                <div class="step-box">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <div class="step-title">Kopfhörer</div>
+                        <div class="step-text">Oben (kleines Loch). Für Kopfhörer mit Kabel.</div>
+                    </div>
+                </div>
             </div>
-            <p>Tippe auf das bunte Sternen-Symbol (Gemini) und frage ihn alles, was dich bewegt.</p>
-        </div>
-    </main>
 
-    <!-- HILFE -->
-    <main id="help" class="page">
-        <div class="card">
-            <h2>Sicherheit & Hilfe.</h2>
-            <div class="samsung-box" style="background: #fff2f2; border-color: #ffdad6;">
-                <b style="color: #c53030;">Vorsicht bei E-Mails!</b>
-                <p style="color: #c53030; font-size: 1rem; margin-top: 10px;">Lösche E-Mails von Banken oder DHL, die dich nach deinem Passwort fragen oder Geld verlangen. Das sind Betrüger.</p>
+            <div class="card">
+                <h3><i class="la la-camera"></i> Kameras</h3>
+                <div class="step-box">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <div class="step-title">Rückseite</div>
+                        <div class="step-text">3 Kameras oben links auf der Rückseite. Die große ist die Hauptkamera (13 MP).</div>
+                    </div>
+                </div>
+                <div class="step-box">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <div class="step-title">Vorderseite</div>
+                        <div class="step-text">Im Bildschirm oben links (8 MP). Für Selfies und Video.</div>
+                    </div>
+                </div>
             </div>
-            
-            <h3>Der Samsung-Neustart</h3>
-            <p>Sollte das Tablet einmal "einfrieren": Halte die <b>Ein/Aus-Taste</b> und die <b>Leiser-Taste</b> gleichzeitig für ca. 10 Sekunden gedrückt. Das Gerät startet dann neu.</p>
-            
-            <button class="no-print" onclick="window.print()" style="width:100%; padding:22px; background:#1d1d1f; color:white; border-radius:20px; border:none; font-weight:700; cursor:pointer; margin-top:30px;">
-                <i class="la la-print"></i> Gesamtes Handbuch drucken
-            </button>
-        </div>
-    </main>
 
-</div>
+            <div class="card">
+                <h3><i class="la la-sim-card"></i> SIM-Karte</h3>
+                <div class="guide-box">
+                    <div class="step-text">Die SIM-Karte ist bereits eingelegt. Du musst nichts tun.</div>
+                </div>
+            </div>
+        </main>
 
-<script>
-    function showPage(pageId) {
-        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-        document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
-        
-        document.getElementById(pageId).classList.add('active');
-        const btn = Array.from(document.querySelectorAll('.nav-item'))
-                         .find(b => b.getAttribute('onclick').includes(pageId));
-        if (btn) btn.classList.add('active');
-        
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+        <main id="einschalten" class="page">
+            <div class="card">
+                <h2>An- und Ausschalten</h2>
+                <p>So schaltest du das Galaxy A11 ein und aus.</p>
+            </div>
 
-    if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-            navigator.serviceWorker.register('sw.js');
+            <div class="card">
+                <h3><i class="la la-power-off"></i> Einschalten</h3>
+                <div class="step-box">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <div class="step-title">Drücke die Seitentaste</div>
+                        <div class="step-text">Die Taste an der rechten Seite OBEN.</div>
+                    </div>
+                </div>
+                <div class="step-box">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <div class="step-title">Warte kurz</div>
+                        <div class="step-text">Das Samsung Logo erscheint (ca. 20 Sekunden).</div>
+                    </div>
+                </div>
+                <div class="step-box">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <div class="step-title">Entsperren</div>
+                        <div class="step-text">Streiche nach oben auf dem Bildschirm.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3><i class="la la-power-off"></i> Ausschalten</h3>
+                <div class="step-box">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <div class="step-title">Halte die Seitentaste</div>
+                        <div class="step-text">Halte die Taste an der rechten Seite 2-3 Sekunden.</div>
+                    </div>
+                </div>
+                <div class="step-box">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <div class="step-title">Ausschalten wählen</div>
+                        <div class="step-text">Tippe auf "Ausschalten" auf dem Bildschirm.</div>
+                    </div>
+                </div>
+                <div class="step-box">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <div class="step-title">Bestätigen</div>
+                        <div class="step-text">Tippe nochmal auf "Ausschalten".</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tip-box tip-red">
+                <i class="la la-exclamation-triangle"></i>
+                <strong>Neustart bei Problemen:</strong>
+                Halte die Seitentaste 15 Sekunden. Das Tablet startet neu.
+            </div>
+        </main>
+
+        <main id="gestures" class="page">
+            <div class="card">
+                <h2>Tippen und Wischen</h2>
+                <p>Dein Finger macht alles. Hier lernst du die Bewegungen.</p>
+            </div>
+
+            <div class="card">
+                <h3><i class="la la-hand-pointer"></i> Die 5 wichtigsten</h3>
+                <div class="step-box">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <div class="step-title">Tippen = Auswählen</div>
+                        <div class="step-text">Einmal tippen öffnet Apps, Bilder, Links.</div>
+                    </div>
+                </div>
+                <div class="step-box">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <div class="step-title">Wischen = Scrollen</div>
+                        <div class="step-text">Schnell hoch/runter wischen bewegt die Seite.</div>
+                    </div>
+                </div>
+                <div class="step-box">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <div class="step-title">Nach oben wischen = Home</div>
+                        <div class="step-text">Wische langsam von unten nach oben zum Startbildschirm.</div>
+                    </div>
+                </div>
+                <div class="step-box">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <div class="step-title">Zwei Finger = Zoom</div>
+                        <div class="step-text">Auseinander ziehen = größer. Zusammen = kleiner.</div>
+                    </div>
+                </div>
+                <div class="step-box">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <div class="step-title">Lang tippen = Mehr</div>
+                        <div class="step-text">Halte den Finger = oft kommen mehr Optionen.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tip-box">
+                <i class="la la-lightbulb"></i>
+                <strong>Tipp:</strong>
+                Wische vom linken Rand nach rechts = ZURÜCK.
+            </div>
+        </main>
+
+        <main id="home" class="page">
+            <div class="card">
+                <h2>Der Startbildschirm</h2>
+                <p>Der Home-Bildschirm ist dein Hauptplatz.</p>
+            </div>
+
+            <div class="card">
+                <h3><i class="la la-th-large"></i> Apps öffnen</h3>
+                <div class="step-box">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <div class="step-title">Apps tippen</div>
+                        <div class="step-text">Tippe auf das Icon einer App.</div>
+                    </div>
+                </div>
+                <div class="step-box">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <div class="step-title">Alle Apps sehen</div>
+                        <div class="step-text">Tippe auf das Gitter-Symbol unten in der Mitte.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3><i class="la la-arrow-up"></i> Zurück zum Start</h3>
+                <div class="guide-box">
+                    <div class="step-text">Wische von unten nach oben = immer zurück zum Home.</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3><i class="la la-search"></i> Widgets und Suche</h3>
+                <div class="step-box">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <div class="step-title">Nach links wischen</div>
+                        <div class="step-text">Wische auf dem Home-Bildschirm nach links für Google Suche.</div>
+                    </div>
+                </div>
+                <div class="step-box">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <div class="step-title">Suche</div>
+                        <div class="step-text">Tippe etwas ein und tippe auf "Suchen".</div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <main id="helligkeit" class="page">
+            <div class="card">
+                <h2>Helligkeit & Display</h2>
+                <p>So stellst du den Bildschirm ein.</p>
+            </div>
+
+            <div class="card">
+                <h3><i class="la la-sun"></i> Helligkeit</h3>
+                <div class="step-box">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <div class="step-title">Schnellmenü</div>
+                        <div class="step-text">Wische mit GESTRECKTER Finger vom oberen Rand nach unten.</div>
+                    </div>
+                </div>
+                <div class="step-box">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <div class="step-title">Helligkeit</div>
+                        <div class="step-text">Ziehe den Balken nach links oder rechts.</div>
+                    </div>
+                </div>
+                <div class="step-box">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <div class="step-title">Automatisch</div>
+                        <div class="step-text">Tippe auf das Wort "Automatisch" = passt sich an.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3><i class="la la-moon"></i> Blaufilter (Nacht)</h3>
+                <p>Weniger blaues Licht für abends:</p>
+                <div class="guide-box">
+                    <div class="step-text">Wische nach unten > tippe "Blaufilter" oder "Sehkomfort".</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3><i class="la la-volume-up"></i> Lautstärke</h3>
+                <div class="step-box">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <div class="step-title">Tasten rechts</div>
+                        <div class="step-text">Oben = lauter, unten = leiser.</div>
+                    </div>
+                </div>
+                <div class="step-box">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <div class="step-title">Stumm</div>
+                        <div class="step-text">Drücke unten KURZ = vibriert (stumm).</div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <main id="wifi" class="page">
+            <div class="card">
+                <h2>Ins WLAN</h2>
+                <p>So verbindest du dich mit dem Internet.</p>
+            </div>
+
+            <div class="card">
+                <h3><i class="la la-wifi"></i> WLAN anmelden</h3>
+                <div class="step-box">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <div class="step-title">WLAN einschalten</div>
+                        <div class="step-text">Wische nach unten > tippe auf WLAN (es wird blau).</div>
+                    </div>
+                </div>
+                <div class="step-box">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <div class="step-title">Netz wählen</div>
+                        <div class="step-text">Tippe auf dein WLAN in der Liste.</div>
+                    </div>
+                </div>
+                <div class="step-box">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <div class="step-title">Passwort</div>
+                        <div class="step-text">Tippe das Passwort ein > tippe "Verbinden".</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tip-box tip-green">
+                <i class="la la-check"></i>
+                <strong>Einmal verbunden:</strong>
+                Das Galaxy merkt sich das WLAN. Es verbindet sich automatisch.
+            </div>
+
+            <div class="card">
+                <h3><i class="la la-exclamation-triangle"></i> Kein Internet?</h3>
+                <div class="step-box">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <div class="step-title">WLAN aus und an</div>
+                        <div class="step-text">Wische nach unten > tippe WLAN = wird grau = aus. Dann wieder tippen = an.</div>
+                    </div>
+                </div>
+                <div class="step-box">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <div class="step-title">Neustart</div>
+                        <div class="step-text">Halte Seitentaste 15 Sekunden.</div>
+                    </div>
+                </div>
+                <div class="step-box">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <div class="step-title">Router prüfen</div>
+                        <div class="step-text">Ist der weiße Kasten (WLAN-Gerät) an?</div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <main id="apps" class="page">
+            <div class="card">
+                <h2>Apps</h2>
+                <p>Programme heißen "Apps" auf dem Galaxy.</p>
+            </div>
+
+            <div class="card">
+                <h3><i class="la la-download"></i> Apps installieren</h3>
+                <div class="step-box">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <div class="step-title">Play Store</div>
+                        <div class="step-text">Tippe auf das bunte Dreieck (Play Store).</div>
+                    </div>
+                </div>
+                <div class="step-box">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <div class="step-title">Suchen</div>
+                        <div class="step-text">Tippe den Namen ein (z.B. "WhatsApp").</div>
+                    </div>
+                </div>
+                <div class="step-box">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <div class="step-title">Installieren</div>
+                        <div class="step-text">Tippe "Installieren" > warten > "Öffnen".</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3><i class="la la-star"></i> Schon installiert</h3>
+                <div class="app-grid">
+                    <div class="app-tile">
+                        <i class="la la-envelope"></i>
+                        <b>E-Mail</b>
+                        <span>Gmail</span>
+                    </div>
+                    <div class="app-tile">
+                        <i class="la la-play"></i>
+                        <b>YouTube</b>
+                        <span>Videos</span>
+                    </div>
+                    <div class="app-tile">
+                        <i class="la la-image"></i>
+                        <b>Fotos</b>
+                        <span>Galerie</span>
+                    </div>
+                    <div class="app-tile">
+                        <i class="la la-calendar"></i>
+                        <b>Kalender</b>
+                        <span>Termine</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3><i class="la la-trash"></i> App löschen</h3>
+                <div class="guide-box">
+                    <div class="step-text">Halte den Finger auf die App > tippe "Deinstallieren" > "OK".</div>
+                </div>
+            </div>
+        </main>
+
+        <main id="kamera" class="page">
+            <div class="card">
+                <h2>Die Kamera</h2>
+                <p>So machst du Fotos und Videos.</p>
+            </div>
+
+            <div class="card">
+                <h3><i class="la la-camera"></i> Foto machen</h3>
+                <div class="step-box">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <div class="step-title">Kamera öffnen</div>
+                        <div class="step-text">Tippe auf das Kamera-Icon auf dem Home-Bildschirm.</div>
+                    </div>
+                </div>
+                <div class="step-box">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <div class="step-title">Auslösen</div>
+                        <div class="step-text">Tippe auf den großen runden Button. Fertig!</div>
+                    </div>
+                </div>
+                <div class="step-box">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <div class="step-title">Anschauen</div>
+                        <div class="step-text">Tippe unten links auf das kleine Bild = Galerie.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3><i class="la la-video-camera"></i> Video aufnehmen</h3>
+                <div class="step-box">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <div class="step-title">Modus wechseln</div>
+                        <div class="step-text">Wische im Kamera-Bildschirm nach links > tippe "VIDEO".</div>
+                    </div>
+                </div>
+                <div class="step-box">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <div class="step-title">Aufnehmen</div>
+                        <div class="step-text">Tippe auf den roten Kreis. Nochmal tippen = stopp.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3><i class="la la-user"></i> Selfie</h3>
+                <div class="step-box">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <div class="step-title">Frontkamera</div>
+                        <div class="step-text">Wische im Kamera-Bildschirm nach oben (oder tippe auf das Symbol).</div>
+                    </div>
+                </div>
+                <div class="step-box">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <div class="step-title">Auslösen</div>
+                        <div class="step-text">Tippe auf den großen Kreis.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tip-box">
+                <i class="la la-lightbulb"></i>
+                <strong>Licht:</strong>
+                Geh ins Licht (Fenster). Dann sind die Fotos besser.
+            </div>
+        </main>
+
+        <main id="whatsapp" class="page">
+            <div class="card">
+                <h2>WhatsApp Nachrichten</h2>
+                <p>So schreibst du Nachrichten an uns.</p>
+            </div>
+
+            <div class="card">
+                <h3><i class="la la-comment"></i> WhatsApp öffnen</h3>
+                <div class="step-box">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <div class="step-title">App finden</div>
+                        <div class="step-text">Tippe auf das grüne WhatsApp-Icon mit dem Telefon.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3><i class="la la-pencil"></i> Nachricht schreiben</h3>
+                <div class="step-box">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <div class="step-title">Neuer Chat</div>
+                        <div class="step-text">Tippe unten rechts auf das Stift-Symbol.</div>
+                    </div>
+                </div>
+                <div class="step-box">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <div class="step-title">Kontakt wählen</div>
+                        <div class="step-text">Tippe auf den Namen der Person.</div>
+                    </div>
+                </div>
+                <div class="step-box">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <div class="step-title">Tippen ODER Sprechen</div>
+                        <div class="step-text">Tippe Text ein ODER tippe auf das Mikrofon und spreche.</div>
+                    </div>
+                </div>
+                <div class="step-box">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <div class="step-title">Senden</div>
+                        <div class="step-text">Tippe auf den blauen Pfeil.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tip-box tip-green">
+                <i class="la la-microphone"></i>
+                <strong>Sprechen statt tippen:</strong>
+                Tippe auf das Mikrofon und spreche. Es schreibt alles automatisch!
+            </div>
+
+            <div class="card">
+                <h3><i class="la la-microphone"></i> Sprachnachricht</h3>
+                <div class="guide-box">
+                    <div class="step-text">Halte den Mikrofon-Knopf = sprechen</div>
+                    <div class="step-text">Loslassen = Nachricht wird gesendet</div>
+                    <div class="step-text">Nach links wischen = abbrechen</div>
+                </div>
+            </div>
+        </main>
+
+        <main id="videoanruf" class="page">
+            <div class="card">
+                <h2>Video-Anruf</h2>
+                <p>So siehst du mich und ich sehe dich.</p>
+            </div>
+
+            <div class="card">
+                <h3><i class="la la-video-camera"></i> WhatsApp Video</h3>
+                <div class="step-box">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <div class="step-title">WhatsApp öffnen</div>
+                        <div class="step-text">Tippe auf das grüne Icon.</div>
+                    </div>
+                </div>
+                <div class="step-box">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <div class="step-title">Chat öffnen</div>
+                        <div class="step-text">Tippe auf den Chat mit mir.</div>
+                    </div>
+                </div>
+                <div class="step-box">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <div class="step-title">Video-Taste</div>
+                        <div class="step-text">Tippe oben rechts auf das kleine Kamera-Symbol.</div>
+                    </div>
+                </div>
+                <div class="step-box">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <div class="step-title">Warten</div>
+                        <div class="step-text">Warte bis ich rangehe.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3><i class="la la-users"></i> Google Meet</h3>
+                <p>Für Gruppen-Gespräche:</p>
+                <div class="step-box">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <div class="step-title">Link bekommen</div>
+                        <div class="step-text">Ich schicke dir einen Link (blauer Text).</div>
+                    </div>
+                </div>
+                <div class="step-box">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <div class="step-title">Tippen</div>
+                        <div class="step-text">Tippe auf den Link > "An Meet teilnehmen".</div>
+                    </div>
+                </div>
+                <div class="step-box">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <div class="step-title">Erlauben</div>
+                        <div class="step-text">Tippe "OK" für Kamera und Mikrofon.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tip-box">
+                <i class="la la-lightbulb"></i>
+                <strong>Tipp:</strong>
+                Setze dich so, dass das Licht auf dein Gesicht scheint.
+            </div>
+        </main>
+
+        <main id="hilfe" class="page">
+            <div class="card">
+                <h2>Hilfe</h2>
+                <p>Wenn etwas nicht geht.</p>
+            </div>
+
+            <div class="card">
+                <h3><i class="la la-refresh"></i> Neustart</h3>
+                <div class="guide-box">
+                    <b>Halte die Seitentaste 15 Sekunden.</b>
+                    <div class="step-text" style="margin-top:12px;">Das Galaxy startet neu. Hilft bei fast allem!</div>
+                </div>
+            </div>
+
+            <div class="tip-box tip-red">
+                <i class="la la-shield"></i>
+                <strong>SPAM erkennen:</strong>
+                <ul style="margin:12px 0 0 0;padding-left:20px;">
+                    <li>DHL/Bank fragen NIEMALS nach Geld</li>
+                    <li>Unbekannte Links NICHT antippen</li>
+                    <li>Im Zweifel: löschen</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3><i class="la la-question-circle"></i> Häufige Fragen</h3>
+                <div class="step-box">
+                    <div class="step-number">?</div>
+                    <div class="step-content">
+                        <div class="step-title">Lädt nicht?</div>
+                        <div class="step-text">Prüfe WLAN oder stecke das Ladegerät ein.</div>
+                    </div>
+                </div>
+                <div class="step-box">
+                    <div class="step-number">?</div>
+                    <div class="step-content">
+                        <div class="step-title">Alles zu klein?</div>
+                        <div class="step-text">Ziehe mit zwei Fingern auseinander.</div>
+                    </div>
+                </div>
+                <div class="step-box">
+                    <div class="step-number">?</div>
+                    <div class="step-content">
+                        <div class="step-title">Komme nicht zurück?</div>
+                        <div class="step-text">Wische von unten nach oben = Home.</div>
+                    </div>
+                </div>
+                <div class="step-box">
+                    <div class="step-number">?</div>
+                    <div class="step-content">
+                        <div class="step-title">Kein Ton?</div>
+                        <div class="step-text">Prüfe die Lautstärke-Taste rechts unten.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <button class="action-btn secondary no-print" onclick="window.print()">
+                    <i class="la la-print"></i> Handbuch drucken
+                </button>
+            </div>
+        </main>
+
+    </div>
+
+    <script>
+        const pageMap = {
+            'start': 'start',
+            'kennenlernen': 'kennenlernen',
+            'einschalten': 'einschalten',
+            'gestures': 'gestures',
+            'home': 'home',
+            'helligkeit': 'helligkeit',
+            'wifi': 'wifi',
+            'apps': 'apps',
+            'kamera': 'kamera',
+            'whatsapp': 'whatsapp',
+            'videoanruf': 'videoanruf',
+            'hilfe': 'hilfe'
+        };
+
+        document.querySelectorAll('.nav-item').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const page = pageMap[btn.dataset.page];
+                showPage(page);
+            });
         });
-    }
-</script>
+
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
+
+            const page = document.getElementById(pageId);
+            const btn = document.querySelector(`[data-page="${pageId}"]`);
+
+            if (page) page.classList.add('active');
+            if (btn) btn.classList.add('active');
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            history.replaceState(null, '', '#' + pageId);
+        }
+
+        if (window.location.hash) {
+            const hash = window.location.hash.slice(1);
+            if (pageMap[hash]) showPage(hash);
+        }
+
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js')
+                    .then(reg => console.log('SW registered'))
+                    .catch(err => console.log('SW error:', err));
+            });
+        }
+
+        window.addEventListener('online', () => {
+            document.getElementById('offlineIndicator').classList.remove('show');
+        });
+
+        window.addEventListener('offline', () => {
+            document.getElementById('offlineIndicator').classList.add('show');
+        });
+    </script>
 
 </body>
 </html>

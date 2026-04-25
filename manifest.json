@@ -1,21 +1,40 @@
 {
-  "name": "Mamas Tablet-Handbuch",
-  "short_name": "Tablet-Guide",
-  "description": "Eine einfache Anleitung für die Nutzung des Android Tablets.",
-  "start_url": "index.html",
+  "name": "Samsung Galaxy A11 Handbuch",
+  "short_name": "Galaxy A11",
+  "description": "Dein Samsung Galaxy A11 Handbuch - einfach erklärt für ältere Menschen.",
+  "start_url": "./index.html",
+  "scope": "./",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#2196f3",
+  "orientation": "portrait-primary",
+  "background_color": "#f8f9fa",
+  "theme_color": "#0071e3",
+  "categories": ["education", "reference"],
+  "lang": "de",
+  "dir": "ltr",
   "icons": [
     {
-      "src": "https://img.icons8.com/color/192/tablet.png",
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect fill='%230071e3' width='192' height='192' rx='32'/%3E%3Cpath fill='white' d='M96 40c-30.9 0-56 25.1-56 56s25.1 56 56 56 56-25.1 56-56-25.1-56-56-56zm0 96c-22.1 0-40-17.9-40-40s17.9-40 40-40 40 17.9 40 40-17.9 40-40 40z'/%3E%3C/svg%3E",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
     },
     {
-      "src": "https://img.icons8.com/color/512/tablet.png",
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect fill='%230071e3' width='512' height='512' rx='80'/%3E%3Cpath fill='white' d='M256 96c-88.4 0-160 71.6-160 160s71.6 160 160 160 160-71.6 160-160-71.6-160-160-160zm0 288c-70.7 0-128-57.3-128-128s57.3-128 128-128 128 57.3 128 128-57.3 128-128 128z'/%3E%3C/svg%3E",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Startseite",
+      "url": "./index.html#start",
+      "description": "Zum Anfang"
+    },
+    {
+      "name": "Hilfe",
+      "url": "./index.html#hilfe",
+      "description": "Bei Problemen"
     }
   ]
 }
