@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mamas Digitaler Begleiter</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#004a99">
+    <style>
+        :root {
+            --primary: #004a99;
+            --secondary: #2e7d32;
+            --gemini: #1a73e8;
+            --bg: #f5f7fa;
+            --card-bg: #ffffff;
+            --text-main: #1a1a1a;
+            --text-sub: #4a4a4a;
+            --accent: #d32f2f;
+            --store: #00897b;
+        }
+
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg);
+            color: var(--text-main);
+            font-size: 1.4rem;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        header {
+            background: var(--primary);
+            color: white;
+            padding: 15px 20px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        header h1 { margin: 0; font-size: 1.5rem; }
+
+        nav.tab-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            display: flex;
+            overflow-x: auto;
+            padding: 10px 0;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            scrollbar-width: none;
+        }
+        nav.tab-bar::-webkit-scrollbar { display: none; }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            color: var(--text-sub);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 0.75rem;
+            font-weight: bold;
+            cursor: pointer;
+            min-width: 90px;
+            flex-shrink: 0;
+        }
+
+        .tab-btn.active { color: var(--primary); border-top: 3px solid var(--primary); padding-top: 7px; }
+        .tab-btn i { font-size: 1.5rem; margin-bottom: 4px; }
+
+        .page {
+            display: none;
+            padding: 20px;
+            padding-bottom: 120px;
+            animation: fadeIn 0.2s ease-out;
+        }
+
+        .page.active { display: block; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.98); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 1px solid #e0e0e0;
+        }
+
+        h2 { color: var(--primary); margin-top: 0; font-size: 1.8rem; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+        h3 { color: var(--secondary); margin-top: 25px; }
+
+        .tip-box { background: #e8f5e9; border-left: 8px solid var(--secondary); padding: 15px; border-radius: 8px; margin: 20px 0; }
+        .gemini-box { background: #e3f2fd; border-left: 8px solid var(--gemini); padding: 15px; border-radius: 8px; margin: 20px 0; }
+        .store-box { background: #e0f2f1; border-left: 8px solid var(--store); padding: 15px; border-radius: 8px; margin: 20px 0; }
+        .alert-box { background: #fff3e0; border-left: 8px solid #ff9800; padding: 15px; border-radius: 8px; margin: 20px 0; }
+
+        .example-prompt {
+            background: #fff;
+            border: 1px dashed var(--gemini);
+            padding: 12px;
+            border-radius: 8px;
+            margin: 10px 0;
+            font-style: italic;
+            font-size: 1.2rem;
+            color: #333;
+        }
+
+        .step { display: flex; margin-bottom: 15px; align-items: flex-start; }
+        .step-num {
+            background: var(--primary);
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .icon { font-style: normal; font-size: 1.6rem; }
+
+        @media print {
+            .tab-bar, .no-print { display: none !important; }
+            .page { display: block !important; page-break-after: always; padding: 0; }
+            body { background: white; font-size: 12pt; }
+            .card { box-shadow: none; border: 1px solid #ccc; break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Digital-Begleiter für Mama</h1>
+</header>
+
+<nav class="tab-bar no-print">
+    <button class="tab-btn active" onclick="showPage('arrival')"><i class="icon">🏥</i><span>Ankunft</span></button>
+    <button class="tab-btn" onclick="showPage('usage')"><i class="icon">🖐️</i><span>Gesten</span></button>
+    <button class="tab-btn" onclick="showPage('typing')"><i class="icon">⌨️</i><span>Tippen</span></button>
+    <button class="tab-btn" onclick="showPage('voice')"><i class="icon">🗣️</i><span>Sprechen</span></button>
+    <button class="tab-btn" onclick="showPage('gemini')"><i class="icon">✨</i><span>Gemini</span></button>
+    <button class="tab-btn" onclick="showPage('store')"><i class="icon">🛍️</i><span>Apps</span></button>
+    <button class="tab-btn" onclick="showPage('media')"><i class="icon">🎬</i><span>Freizeit</span></button>
+    <button class="tab-btn" onclick="showPage('family')"><i class="icon">❤️</i><span>Familie</span></button>
+    <button class="tab-btn" onclick="showPage('help')"><i class="icon">🆘</i><span>Hilfe</span></button>
+</nav>
+
+<!-- ANKUNFT -->
+<main id="arrival" class="page active">
+    <div class="card">
+        <h2>Dein Start im Krankenhaus</h2>
+        <p>Ein Tablet ist eine tolle Ergänzung zu deinem Chromebook. Es ist leichter und perfekt zum Lesen im Liegen.</p>
+        <div class="tip-box">
+            <strong>Checkliste für das Krankenbett:</strong>
+            <ul>
+                <li>Langes Ladekabel (3 Meter Reichweite)</li>
+                <li>Kopfhörer (für Filme und Musik)</li>
+                <li>Display-Tuch (gegen Fingerabdrücke)</li>
+            </ul>
+        </div>
+    </div>
+</main>
+
+<!-- GESTEN -->
+<main id="usage" class="page">
+    <div class="card">
+        <h2>Die Finger-Steuerung</h2>
+        <p>Statt der Maus nutzt du einfache Finger-Bewegungen:</p>
+        <div class="step"><div class="step-num">🏠</div><div><strong>Zum Startbildschirm:</strong> Von der untersten Kante schnell nach oben wischen.</div></div>
+        <div class="step"><div class="step-num">⬅️</div><div><strong>Einen Schritt zurück:</strong> Vom linken oder rechten Rand zur Mitte wischen.</div></div>
+        <div class="step"><div class="step-num">🔍</div><div><strong>Alles vergrößern:</strong> Zwei Finger auflegen und auseinanderziehen.</div></div>
+    </div>
+</main>
+
+<!-- TIPPEN -->
+<main id="typing" class="page">
+    <div class="card">
+        <h2>Besser Schreiben (SwiftKey)</h2>
+        <p>Dein Tablet nutzt die <strong>SwiftKey-Tastatur</strong>. Sie hilft dir, schneller zu schreiben.</p>
+        
+        <h3>1. Wischen statt Tippen (Flow)</h3>
+        <p>Du musst die Tasten nicht einzeln drücken. Gleite mit dem Finger einfach von Buchstabe zu Buchstabe, ohne abzusetzen.</p>
+        
+        <h3>2. Wortvorschläge</h3>
+        <p>Das Tablet lernt, was du schreiben willst. Tippe einfach auf die Wörter über der Tastatur, wenn sie passen.</p>
+        
+        <div class="tip-box">
+            <strong>Tipp:</strong> Wenn du dich vertippst, löscht ein Druck auf die "X"-Taste rechts das ganze Wort.
+        </div>
+    </div>
+</main>
+
+<!-- SPRECHEN -->
+<main id="voice" class="page">
+    <div class="card">
+        <h2>Sprechen statt Tippen</h2>
+        <p>Das ist oft am entspanntesten, wenn man im Bett liegt.</p>
+        
+        <h3>1. Die Diktier-Funktion</h3>
+        <p>Auf deiner Tastatur ist ein kleines <strong>Mikrofon-Symbol</strong>.</p>
+        <div class="step"><div class="step-num">🎤</div><div>Tippe es an und sprich einfach deinen Text. Das Tablet schreibt ihn für dich in WhatsApp oder E-Mails.</div></div>
+        
+        <h3>2. Google Sprachsteuerung</h3>
+        <p>Du kannst das Tablet rufen. Sag laut:</p>
+        <div class="example-prompt">"Hey Google, wie ist das Wetter in Hamburg?"</div>
+        <div class="example-prompt">"Hey Google, öffne die ARD Mediathek."</div>
+    </div>
+</main>
+
+<!-- GEMINI -->
+<main id="gemini" class="page">
+    <div class="card">
+        <h2 style="color:var(--gemini)">Dein digitaler Wissens-Begleiter: Gemini ✨</h2>
+        <p>Gemini ist ein persönlicher Assistent, der dir bei fast allen Fragen helfen kann.</p>
+        
+        <div class="gemini-box">
+            <strong>Wie du Gemini nutzen kannst:</strong>
+            <p>1. <strong>Arztbegriffe klären:</strong></p>
+            <div class="example-prompt">"Erklär mir den Begriff 'Kardiologie' ganz einfach."</div>
+            
+            <p>2. <strong>Hilfe beim Formulieren:</strong></p>
+            <div class="example-prompt">"Schreib eine freundliche WhatsApp, dass es mir gut geht und ich mich über Besuch freue."</div>
+            
+            <p>3. <strong>Unterhaltung & Wissen:</strong></p>
+            <div class="example-prompt">"Erzähl mir etwas Interessantes über die Geschichte von Berlin."</div>
+        </div>
+
+        <div class="tip-box">
+            <strong>So startest du:</strong> Öffne die Gemini-App (das blaue Sternen-Symbol) und nutze dort das Mikrofon, um deine Frage einfach laut zu stellen.
+        </div>
+    </div>
+</main>
+
+<!-- PLAY STORE -->
+<main id="store" class="page">
+    <div class="card">
+        <h2>Neue Apps finden</h2>
+        <p>Im <strong>Play Store</strong> (buntes Dreieck) findest du alles, was du brauchst.</p>
+        <div class="step"><div class="step-num">1</div><div>Tippe oben in die Suche (z.B. "Rätsel" oder "Zeitung").</div></div>
+        <div class="step"><div class="step-num">2</div><div>Klicke auf eine App, die dir gefällt.</div></div>
+        <div class="step"><div class="step-num">3</div><div>Tippe auf <strong>Installieren</strong>.</div></div>
+        <div class="store-box">
+            <strong>Sicherheit:</strong> Kostenlose Apps haben nur den Knopf "Installieren". Wenn eine App etwas kostet, steht der Preis direkt dabei.
+        </div>
+    </div>
+</main>
+
+<!-- FREIZEIT -->
+<main id="media" class="page">
+    <div class="card">
+        <h2>Fernsehen & Lesen</h2>
+        <p>Öffne die <strong>ARD</strong> oder <strong>ZDF Mediathek</strong> für spannende Filme. Nutze <strong>Chrome</strong> (bunter Kreis), um deine Nachrichten zu lesen – vergiss nicht, mit zwei Fingern zu zoomen!</p>
+    </div>
+</main>
+
+<!-- FAMILIE -->
+<main id="family" class="page">
+    <div class="card">
+        <h2>Kontakt zu uns ❤️</h2>
+        <p>In WhatsApp oben rechts auf das <strong>Kamera-Symbol</strong> tippen für einen Videoanruf. Wir freuen uns, dich zu sehen!</p>
+    </div>
+</main>
+
+<!-- HILFE -->
+<main id="help" class="page">
+    <div class="card">
+        <h2>Wenn etwas nicht klappt</h2>
+        <div class="alert-box">
+            <strong>Keine Sorge:</strong> Wenn das Tablet "hängt", halte den Einschaltknopf an der Seite ca. 15 Sekunden lang fest gedrückt, bis das Gerät neu startet.
+        </div>
+    </div>
+    <button class="no-print" onclick="window.print()" style="width:100%; padding:20px; background:var(--primary); color:white; border:none; border-radius:10px; font-weight:bold; cursor:pointer;">🖨️ Alles für die Tasche drucken</button>
+</main>
+
+<script>
+    function showPage(pageId) {
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.getElementById(pageId).classList.add('active');
+        const activeBtn = Array.from(document.querySelectorAll('.tab-btn'))
+                              .find(btn => btn.getAttribute('onclick').includes(pageId));
+        if (activeBtn) activeBtn.classList.add('active');
+        window.scrollTo(0, 0);
+    }
+
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('sw.js');
+        });
+    }
+</script>
+
+</body>
+</html>
