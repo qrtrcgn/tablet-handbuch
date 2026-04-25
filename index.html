@@ -6,6 +6,11 @@
     <title>Mein Digitaler Begleiter</title>
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#f8fafc">
+    
+    <!-- Premium Icons: Icons8 (Line Awesome) & IconScout (Unicons) -->
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+    
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 
@@ -18,7 +23,6 @@
             --md-sys-color-on-surface: #1a1b1f;
             --md-sys-color-surface-variant: #e1e2ec;
             --md-sys-color-on-surface-variant: #44474f;
-            --md-sys-color-outline: #74777f;
             --radius-xl: 28px;
             --radius-lg: 16px;
         }
@@ -34,14 +38,13 @@
             padding: 0;
             background-color: #f8fafc;
             color: var(--md-sys-color-on-surface);
-            font-size: 1.3rem;
+            font-size: 1.25rem;
             line-height: 1.6;
         }
 
-        /* Top Bar */
         header {
             background: var(--md-sys-color-surface);
-            padding: 24px 20px;
+            padding: 20px;
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -52,9 +55,15 @@
 
         header h1 { 
             margin: 0; 
-            font-size: 1.4rem; 
+            font-size: 1.3rem; 
             font-weight: 500;
             color: var(--md-sys-color-on-surface);
+        }
+
+        .header-icon {
+            color: var(--md-sys-color-primary);
+            font-size: 1.5rem;
+            margin-right: 12px;
         }
 
         /* Material 3 Bottom Navigation */
@@ -65,11 +74,12 @@
             right: 0;
             background: #f1f3f9;
             display: flex;
-            padding: 12px 8px 24px 8px;
+            padding: 10px 4px 24px 4px;
             z-index: 1000;
             overflow-x: auto;
             scrollbar-width: none;
             justify-content: space-around;
+            border-top: 1px solid #e1e2ec;
         }
         nav.tab-bar::-webkit-scrollbar { display: none; }
 
@@ -80,15 +90,15 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             font-weight: 500;
             cursor: pointer;
-            min-width: 70px;
+            min-width: 65px;
             transition: all 0.2s;
         }
 
         .icon-wrapper {
-            width: 64px;
+            width: 56px;
             height: 32px;
             display: flex;
             align-items: center;
@@ -98,13 +108,13 @@
             transition: background-color 0.2s;
         }
 
-        .tab-btn.active { color: var(--md-sys-color-on-surface); }
+        .tab-btn.active { color: var(--md-sys-color-on-surface); font-weight: 700; }
         .tab-btn.active .icon-wrapper {
             background-color: var(--md-sys-color-primary-container);
             color: var(--md-sys-color-on-primary-container);
         }
 
-        .tab-btn i { font-size: 1.4rem; font-style: normal; }
+        .tab-btn i { font-size: 1.6rem; }
 
         /* Content Area */
         .page {
@@ -117,52 +127,54 @@
 
         .page.active { display: block; animation: fadeIn 0.3s ease-out; }
 
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
         /* Cards */
         .card {
             background: white;
             border-radius: var(--radius-xl);
-            padding: 32px;
+            padding: 28px;
             margin-bottom: 16px;
             border: 1px solid var(--md-sys-color-surface-variant);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
         }
 
-        h2 { font-size: 1.8rem; margin: 0 0 16px 0; color: var(--md-sys-color-on-surface); }
-        h3 { font-size: 1.3rem; margin: 24px 0 12px 0; color: var(--md-sys-color-primary); }
+        h2 { font-size: 1.6rem; margin: 0 0 16px 0; color: var(--md-sys-color-on-surface); font-weight: 500; }
+        h3 { font-size: 1.2rem; margin: 24px 0 12px 0; color: var(--md-sys-color-primary); font-weight: 500; }
 
         .info-card {
             background: #f0f4f8;
             border-radius: var(--radius-lg);
-            padding: 20px;
+            padding: 18px;
             margin: 16px 0;
             display: flex;
             gap: 16px;
             align-items: flex-start;
         }
 
-        .info-card i { font-size: 1.5rem; }
+        .info-card i { font-size: 1.8rem; color: var(--md-sys-color-primary); }
 
         /* App Items */
         .app-row {
             display: flex;
             align-items: center;
-            padding: 16px 0;
+            padding: 14px 0;
             border-bottom: 1px solid #eee;
         }
         .app-row:last-child { border: none; }
         
         .app-icon {
-            width: 48px;
-            height: 48px;
+            width: 44px;
+            height: 44px;
             background: #f1f3f9;
             border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             margin-right: 16px;
-            font-size: 1.5rem;
+            color: var(--md-sys-color-primary);
         }
+        .app-icon i { font-size: 1.6rem; }
 
         /* Buttons */
         .btn-primary {
@@ -176,6 +188,10 @@
             width: 100%;
             margin-top: 20px;
             cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
         }
 
         @media print {
@@ -188,16 +204,17 @@
 <body>
 
 <header>
+    <i class="uil uil-mobile-android header-icon"></i>
     <h1>Mein Digitaler Begleiter</h1>
 </header>
 
 <nav class="tab-bar no-print">
-    <button class="tab-btn active" onclick="showPage('start')"><div class="icon-wrapper"><i>🏠</i></div><span>Start</span></button>
-    <button class="tab-btn" onclick="showPage('usage')"><div class="icon-wrapper"><i>✨</i></div><span>Bedienung</span></button>
-    <button class="tab-btn" onclick="showPage('voice')"><div class="icon-wrapper"><i>🎤</i></div><span>Sprache</span></button>
-    <button class="tab-btn" onclick="showPage('gemini')"><div class="icon-wrapper"><i>🤖</i></div><span>Wissen</span></button>
-    <button class="tab-btn" onclick="showPage('apps')"><div class="icon-wrapper"><i>🛍️</i></div><span>Apps</span></button>
-    <button class="tab-btn" onclick="showPage('family')"><div class="icon-wrapper"><i>❤️</i></div><span>Familie</span></button>
+    <button class="tab-btn active" onclick="showPage('start')"><div class="icon-wrapper"><i class="la la-home"></i></div><span>Start</span></button>
+    <button class="tab-btn" onclick="showPage('usage')"><div class="icon-wrapper"><i class="la la-hand-pointer"></i></div><span>Bedienung</span></button>
+    <button class="tab-btn" onclick="showPage('voice')"><div class="icon-wrapper"><i class="la la-microphone"></i></div><span>Sprache</span></button>
+    <button class="tab-btn" onclick="showPage('gemini')"><div class="icon-wrapper"><i class="la la-brain"></i></div><span>Wissen</span></button>
+    <button class="tab-btn" onclick="showPage('apps')"><div class="icon-wrapper"><i class="la la-shopping-bag"></i></div><span>Apps</span></button>
+    <button class="tab-btn" onclick="showPage('family')"><div class="icon-wrapper"><i class="la la-users"></i></div><span>Familie</span></button>
 </nav>
 
 <main id="start" class="page active">
@@ -205,7 +222,7 @@
         <h2>Hallo Mama</h2>
         <p>Dieses Tablet ist dein Begleiter für die nächsten Tage. Es ist so eingestellt, dass du alles ganz einfach und entspannt nutzen kannst.</p>
         <div class="info-card">
-            <i>💡</i>
+            <i class="la la-lightbulb"></i>
             <div>
                 <strong>Tipp für das Bett:</strong>
                 Lehne das Tablet einfach gegen ein Kissen. So hast du die Hände frei zum Lesen oder Video-Telefonieren.
@@ -219,14 +236,17 @@
         <h2>Einfache Bedienung</h2>
         <p>Das Tablet hat fast keine Knöpfe. Du steuerst alles mit den Fingern.</p>
         
-        <h3>Die zwei wichtigsten Handgriffe:</h3>
         <div class="info-card">
-            <i>🏠</i>
+            <i class="la la-home"></i>
             <div><strong>Nach Hause:</strong> Von ganz unten kurz hochwischen. Alle Apps schließen sich und du bist wieder am Start.</div>
         </div>
         <div class="info-card">
-            <i>⬅️</i>
+            <i class="la la-arrow-left"></i>
             <div><strong>Zurück:</strong> Vom linken oder rechten Rand zur Mitte wischen. Das ist wie "einmal umblättern" zurück.</div>
+        </div>
+        <div class="info-card">
+            <i class="la la-search-plus"></i>
+            <div><strong>Vergrößern:</strong> Lege zwei Finger auf und ziehe sie auseinander. Ideal zum Zeitunglesen.</div>
         </div>
     </div>
 </main>
@@ -237,12 +257,12 @@
         <p>Wenn du keine Lust hast zu tippen, kannst du dem Tablet einfach sagen, was es tun soll.</p>
         
         <div class="info-card">
-            <i>🎤</i>
+            <i class="la la-microphone"></i>
             <div><strong>Nachrichten diktieren:</strong> Tippe in WhatsApp auf das kleine Mikrofon auf der Tastatur. Sprich einfach los – das Tablet schreibt alles mit.</div>
         </div>
         
         <div class="info-card">
-            <i>🗣️</i>
+            <i class="la la-google"></i>
             <div><strong>Hey Google:</strong> Sag einfach laut "Hey Google, wie wird das Wetter?" oder "Hey Google, spiele klassische Musik".</div>
         </div>
     </div>
@@ -251,15 +271,17 @@
 <main id="gemini" class="page">
     <div class="card">
         <h2>Dein Wissens-Begleiter</h2>
-        <p>Gemini ist ein intelligenter Assistent, der dir bei Fragen aller Art hilft.</p>
+        <p>Gemini hilft dir bei Fragen aller Art – wie ein intelligenter Assistent.</p>
         
-        <div style="background: #e9f0ff; padding: 20px; border-radius: 20px; margin: 20px 0;">
-            <p style="font-style: italic; margin: 0; color: #004a99;">
+        <div style="background: #e9f0ff; padding: 22px; border-radius: 20px; margin: 20px 0; border: 1px solid #d9e2ff;">
+            <p style="font-style: italic; margin: 0; color: #004a99; font-size: 1.1rem;">
+                <i class="la la-quote-left" style="opacity: 0.3;"></i><br>
                 "Erklär mir diesen medizinischen Begriff..."<br>
                 "Schreib eine nette E-Mail an..."<br>
                 "Was kann ich gegen Langeweile tun?"
-            </div>
-        <p>Tippe auf das blaue Sternen-Symbol auf deinem Bildschirm, um Gemini zu starten.</p>
+            </p>
+        </div>
+        <p>Tippe auf das bunte Sternen-Symbol (Gemini) auf deinem Bildschirm, um zu starten.</p>
     </div>
 </main>
 
@@ -268,12 +290,12 @@
         <h2>Deine Favoriten</h2>
         <p>Diese Apps haben wir für dich vorbereitet:</p>
         
-        <div class="app-row"><div class="app-icon">⚕️</div><div><strong>Apotheke</strong><br><small>DocMorris & medpex</small></div></div>
-        <div class="app-row"><div class="app-icon">🛒</div><div><strong>Shopping</strong><br><small>eBay & Amazon</small></div></div>
-        <div class="app-row"><div class="app-icon">📦</div><div><strong>Pakete</strong><br><small>DHL Paketverfolgung</small></div></div>
-        <div class="app-row"><div class="app-icon">💶</div><div><strong>Finanzen</strong><br><small>Sparkasse & PayPal</small></div></div>
+        <div class="app-row"><div class="app-icon"><i class="la la-pills"></i></div><div><strong>Apotheke</strong><br><small>DocMorris & medpex</small></div></div>
+        <div class="app-row"><div class="app-icon"><i class="la la-shopping-cart"></i></div><div><strong>Shopping</strong><br><small>eBay & Amazon</small></div></div>
+        <div class="app-row"><div class="app-icon"><i class="la la-box"></i></div><div><strong>Versand</strong><br><small>DHL Paketverfolgung</small></div></div>
+        <div class="app-row"><div class="app-icon"><i class="la la-university"></i></div><div><strong>Finanzen</strong><br><small>Sparkasse & PayPal</small></div></div>
         
-        <button class="btn-primary" onclick="showPage('start')">Weitere Apps im Play Store laden</button>
+        <button class="btn-primary" onclick="showPage('start')"><i class="la la-plus-circle"></i> Weitere Apps laden</button>
     </div>
 </main>
 
@@ -283,12 +305,12 @@
         <p>Du kannst uns jederzeit sehen und hören.</p>
         
         <div class="info-card">
-            <i>📹</i>
+            <i class="la la-video"></i>
             <div><strong>WhatsApp Video:</strong> Im Chat oben rechts auf die Kamera tippen.</div>
         </div>
         <div class="info-card">
-            <i>👥</i>
-            <div><strong>Google Meet:</strong> Wenn wir einen Link schicken, tippe einfach darauf und wähle "Teilnehmen". Dann sind wir alle gleichzeitig auf deinem Bildschirm.</div>
+            <i class="la la-video-camera"></i>
+            <div><strong>Google Meet:</strong> Wenn wir einen Link schicken, tippe einfach darauf und wähle "Teilnehmen".</div>
         </div>
     </div>
 </main>
