@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Digitaler Begleiter — Premium Edition</title>
+    <title>Samsung Begleiter — Edition A11+</title>
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#ffffff">
     
@@ -17,13 +17,13 @@
             --surface: #ffffff;
             --text-main: #1d1d1f;
             --text-muted: #86868b;
+            --samsung-blue: #034ea2;
             --brand: #0071e3;
-            --dock: rgba(29, 29, 31, 0.88);
+            --dock: rgba(29, 29, 31, 0.9);
             --border: rgba(0,0,0,0.06);
-            --radius-app: 28px;
-            --radius-lg: 20px;
-            --shadow-soft: 0 12px 40px rgba(0,0,0,0.04);
-            --shadow-premium: 0 20px 50px rgba(0,0,0,0.1);
+            --radius-app: 30px;
+            --radius-lg: 22px;
+            --shadow-premium: 0 15px 45px rgba(0,0,0,0.06);
         }
 
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -39,12 +39,11 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Pure Minimalist Header */
         header {
             background: rgba(255, 255, 255, 0.85);
             backdrop-filter: saturate(180%) blur(20px);
             -webkit-backdrop-filter: saturate(180%) blur(20px);
-            padding: 20px 32px;
+            padding: 24px 32px;
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -54,25 +53,24 @@
             justify-content: space-between;
         }
 
-        header h1 { font-size: 1.1rem; font-weight: 600; margin: 0; letter-spacing: -0.01em; color: var(--text-main); }
-        .live-dot { width: 8px; height: 8px; background: #32d74b; border-radius: 50%; margin-right: 10px; display: inline-block; box-shadow: 0 0 10px rgba(50, 215, 75, 0.5); }
+        header h1 { font-size: 1.1rem; font-weight: 700; margin: 0; letter-spacing: -0.01em; color: var(--samsung-blue); }
+        .device-badge { font-size: 0.7rem; font-weight: 800; background: #eee; padding: 4px 12px; border-radius: 50px; opacity: 0.7; }
 
-        /* Floating Minimalist Dock */
         nav.dock {
             position: fixed;
             bottom: 24px;
             left: 50%;
             transform: translateX(-50%);
             background: var(--dock);
-            backdrop-filter: blur(18px);
-            -webkit-backdrop-filter: blur(18px);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             display: flex;
             padding: 8px;
-            border-radius: 30px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+            border-radius: 32px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
             z-index: 2000;
-            width: 92%;
-            max-width: 800px;
+            width: 94%;
+            max-width: 850px;
             overflow-x: auto;
             scrollbar-width: none;
             gap: 2px;
@@ -89,17 +87,16 @@
             font-size: 0.65rem;
             font-weight: 600;
             cursor: pointer;
-            min-width: 72px;
+            min-width: 75px;
             padding: 12px 0;
-            border-radius: 22px;
+            border-radius: 24px;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .nav-item i { font-size: 1.7rem; margin-bottom: 5px; }
+        .nav-item i { font-size: 1.8rem; margin-bottom: 5px; }
         .nav-item.active { color: #ffffff; background: rgba(255,255,255,0.12); }
-        .nav-item:active { transform: scale(0.92); }
+        .nav-item:active { transform: scale(0.9); }
 
-        /* Content Structure */
         .content-area {
             max-width: 850px;
             margin: 0 auto;
@@ -107,40 +104,31 @@
         }
 
         .page { display: none; }
-        .page.active { display: block; animation: appleReveal 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
-        @keyframes appleReveal { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+        .page.active { display: block; animation: slideReveal 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+        @keyframes slideReveal { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* Premium Card Design */
         .card {
             background: var(--surface);
             border-radius: var(--radius-app);
             padding: 40px;
             margin-bottom: 24px;
-            box-shadow: var(--shadow-soft);
+            box-shadow: var(--shadow-premium);
             border: 1px solid var(--border);
         }
 
-        .card-accent { background: linear-gradient(145deg, #0071e3, #005bb5); color: white; border: none; }
-        .card-accent h2, .card-accent p { color: white; }
+        h2 { font-size: 2.2rem; font-weight: 700; margin: 0 0 16px 0; letter-spacing: -0.04em; }
+        h3 { font-size: 1.4rem; font-weight: 600; margin: 48px 0 20px 0; display: flex; align-items: center; gap: 14px; }
+        h3 i { color: var(--samsung-blue); font-size: 2rem; }
 
-        h2 { font-size: 2.4rem; font-weight: 700; margin: 0 0 16px 0; letter-spacing: -0.04em; color: var(--text-main); }
-        h3 { font-size: 1.5rem; font-weight: 600; margin: 48px 0 20px 0; display: flex; align-items: center; gap: 14px; color: var(--text-main); }
-        h3 i { color: var(--brand); font-size: 2rem; }
+        p { color: var(--text-muted); font-size: 1.2rem; margin-bottom: 24px; }
 
-        p { color: var(--text-muted); font-size: 1.2rem; margin-bottom: 24px; font-weight: 400; }
-
-        /* Modules */
-        .module-box {
-            background: #f5f5f7;
+        .samsung-box {
+            background: #eef4ff;
             border-radius: var(--radius-lg);
             padding: 24px;
             margin: 24px 0;
-            display: flex;
-            gap: 20px;
-            align-items: flex-start;
+            border-left: 6px solid var(--samsung-blue);
         }
-        .module-box i { font-size: 2.2rem; color: var(--brand); }
-        .module-box b { display: block; margin-bottom: 4px; font-size: 1.15rem; }
 
         .step-pill {
             display: flex;
@@ -151,22 +139,21 @@
         }
         .step-pill:last-child { border: none; }
         .step-id { 
-            background: var(--brand); 
+            background: var(--samsung-blue); 
             color: white; 
             width: 32px; 
             height: 32px; 
-            border-radius: 50%; 
+            border-radius: 10px; 
             display: flex; 
             align-items: center; 
             justify-content: center; 
             font-weight: 800; 
             font-size: 0.9rem;
-            flex-shrink: 0;
         }
 
-        .grid-3 {
+        .grid-2 {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            grid-template-columns: 1fr 1fr;
             gap: 16px;
             margin: 24px 0;
         }
@@ -177,19 +164,15 @@
             padding: 24px;
             border-radius: var(--radius-lg);
             text-align: center;
-            transition: all 0.3s;
         }
-        .tile i { font-size: 2.8rem; color: var(--brand); margin-bottom: 16px; display: block; }
+        .tile i { font-size: 2.8rem; color: var(--samsung-blue); margin-bottom: 16px; display: block; }
         .tile strong { display: block; margin-bottom: 4px; }
-        .tile span { font-size: 0.9rem; color: var(--text-muted); }
-
-        .warning-box { background: #fff2f2; border: 1px solid #ffdad6; border-radius: var(--radius-lg); padding: 24px; color: #410002; margin: 32px 0; }
 
         .print-btn {
-            background: #1d1d1f;
+            background: var(--text-main);
             color: white;
             padding: 22px;
-            border-radius: 18px;
+            border-radius: 20px;
             border: none;
             font-weight: 700;
             font-size: 1.1rem;
@@ -200,36 +183,30 @@
             align-items: center;
             justify-content: center;
             gap: 14px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
         }
 
         @media print {
             .dock, header, .no-print { display: none !important; }
             .page { display: block !important; page-break-after: always; }
-            .card { border: 1px solid #eee; box-shadow: none; break-inside: avoid; }
+            .card { box-shadow: none; border: 1px solid #eee; break-inside: avoid; }
             body { background: white; font-size: 12pt; }
-        }
-
-        @media (max-width: 600px) {
-            h2 { font-size: 1.9rem; }
-            .card { padding: 24px; }
         }
     </style>
 </head>
 <body>
 
 <header>
-    <div><span class="live-dot"></span><h1>Digitaler Begleiter</h1></div>
-    <div style="font-size: 0.8rem; font-weight: 600; opacity: 0.4;">PREMIUM MERGE</div>
+    <div><h1>Galaxy Begleiter</h1></div>
+    <div class="device-badge">GALAXY TAB A11+</div>
 </header>
 
 <nav class="dock no-print">
     <button class="nav-item active" onclick="showPage('welcome')"><i class="la la-star"></i><span>Start</span></button>
-    <button class="nav-item" onclick="showPage('basics')"><i class="la la-toggle-on"></i><span>System</span></button>
-    <button class="nav-item" onclick="showPage('connectivity')"><i class="la la-wifi"></i><span>Netz</span></button>
+    <button class="nav-item" onclick="showPage('samsung')"><i class="la la-tablet"></i><span>Galaxy</span></button>
+    <button class="nav-item" onclick="showPage('wifi')"><i class="la la-wifi"></i><span>Netz</span></button>
     <button class="nav-item" onclick="showPage('gestures')"><i class="la la-hand-pointer"></i><span>Gesten</span></button>
     <button class="nav-item" onclick="showPage('typing')"><i class="la la-keyboard"></i><span>Text</span></button>
-    <button class="nav-item" onclick="showPage('media')"><i class="la la-play-circle"></i><span>Freizeit</span></button>
+    <button class="nav-item" onclick="showPage('media')"><i class="la la-play-circle"></i><span>Medien</span></button>
     <button class="nav-item" onclick="showPage('family')"><i class="la la-users"></i><span>Familie</span></button>
     <button class="nav-item" onclick="showPage('gemini')"><i class="la la-brain"></i><span>Wissen</span></button>
     <button class="nav-item" onclick="showPage('help')"><i class="la la-shield-alt"></i><span>Hilfe</span></button>
@@ -237,167 +214,135 @@
 
 <div class="content-area">
 
-    <!-- SEITE: START -->
+    <!-- WILLKOMMEN -->
     <main id="welcome" class="page active">
-        <div class="card card-accent">
-            <h2>Gute Erholung.</h2>
-            <p>Wir haben dir dieses Tablet eingerichtet, damit du im Krankenhaus alles Wichtige griffbereit hast. Es ist einfach zu bedienen und voller schöner Dinge.</p>
+        <div class="card" style="background: linear-gradient(145deg, #034ea2, #0071e3); color: white; border: none;">
+            <h2>Hallo Mama.</h2>
+            <p style="color: rgba(255,255,255,0.9);">Dein neues Samsung Galaxy Tab A11+ ist das perfekte Gerät für deine Zeit im Krankenhaus. Es ist schnell, hat ein tolles Display und wir haben es speziell für dich eingerichtet.</p>
         </div>
         <div class="card">
-            <h3><i class="la la-check-circle"></i> Erste Schritte</h3>
-            <div class="step-pill"><span class="step-id">1</span><span><b>Einschalten:</b> Drücke die Taste an der Seite, bis das Display hell wird.</span></div>
-            <div class="step-pill"><span class="step-id">2</span><span><b>Entsperren:</b> Streiche mit dem Finger von unten nach oben über den Bildschirm.</span></div>
-            <div class="step-pill"><span class="step-id">3</span><span><b>Haltung:</b> Lehne das Tablet gegen ein Kissen – das schont deine Arme im Liegen.</span></div>
+            <h3><i class="la la-check-circle"></i> Samsung Schnell-Start</h3>
+            <div class="step-pill"><span class="step-id">1</span><span><b>Einschalten:</b> Drücke die Taste an der Seite ca. 2 Sekunden.</span></div>
+            <div class="step-pill"><span class="step-id">2</span><span><b>Entsperren:</b> Streiche einfach von unten nach oben über das Glas.</span></div>
+            <div class="step-pill"><span class="step-id">3</span><span><b>Taskleiste:</b> Achte auf die Leiste ganz unten – dort findest du deine wichtigsten Apps immer griffbereit.</span></div>
         </div>
     </main>
 
-    <!-- SEITE: BASICS (SYSTEM) -->
-    <main id="basics" class="page">
+    <!-- SAMSUNG SPECIFICS -->
+    <main id="samsung" class="page">
         <div class="card">
-            <h2>Dein Tablet steuern.</h2>
-            <p>Die wichtigsten Einstellungen für deinen Komfort.</p>
+            <h2>Samsung Besonderheiten.</h2>
+            <p>Dein Galaxy Tab hat ein paar schlaue Funktionen, die dir das Leben leichter machen.</p>
             
-            <h3><i class="la la-sun"></i> Helligkeit & Augen</h3>
-            <div class="module-box">
-                <i class="la la-sliders-h"></i>
-                <div>
-                    <b>So stellst du das Licht ein:</b>
-                    Wische von ganz oben nach unten. Schiebe den Balken mit der Sonne nach links für gemütliches Licht. Tippe auf <b>"Augenkomfort"</b>, wenn du abends liest.
-                </div>
+            <h3><i class="la la-window-restore"></i> Die Taskleiste</h3>
+            <p>Genau wie an deinem Chromebook siehst du unten in jeder App eine kleine Leiste. Tippe dort einfach auf ein Symbol, um schnell zwischen WhatsApp, Chrome und deinen Spielen zu wechseln.</p>
+
+            <h3><i class="la la-indent"></i> Das Seiten-Paneel</h3>
+            <div class="samsung-box">
+                <b>Der geheime Griff:</b>
+                Am rechten Rand des Bildschirms siehst du einen ganz feinen, grauen Strich. Ziehe diesen zur Mitte des Bildschirms, um deine Lieblings-Apps sofort zu öffnen, egal wo du gerade bist.
             </div>
 
-            <h3><i class="la la-volume-up"></i> Töne & Lautstärke</h3>
-            <p>Die Taste an der rechten Seite: Oben ist lauter, unten ist leiser. Nutze im Zimmer bitte immer deine Kopfhörer.</p>
+            <h3><i class="la la-columns"></i> Zwei Apps gleichzeitig</h3>
+            <p>Du kannst z.B. links ein Video schauen und rechts WhatsApp offen haben. Ziehe dazu einfach eine App aus der Taskleiste oder dem Seiten-Paneel in die Mitte des Bildschirms.</p>
         </div>
     </main>
 
-    <!-- SEITE: NETZ (WLAN & BLUETOOTH) -->
-    <main id="connectivity" class="page">
+    <!-- WLAN -->
+    <main id="wifi" class="page">
         <div class="card">
-            <h2>Immer verbunden.</h2>
-            <p>So nutzt du das Internet im Krankenhaus.</p>
-            
-            <div class="module-box" style="background: #fff8e1; border: 1px solid #ffe082;">
-                <i class="la la-lightbulb" style="color: #fbc02d;"></i>
-                <div>
-                    <b>Der Profi-Trick für das WLAN:</b>
-                    Wenn das Internet hakt: Öffne die App <b>Chrome</b> (der bunte Kreis) und tippe eine Adresse ein. Erst dann erscheint meist die Seite zum "Bestätigen" der Krankenhaus-Regeln.
-                </div>
+            <h2>Internet & Verbindung.</h2>
+            <p>Das Samsung-WLAN ist sehr zuverlässig. So nutzt du es:</p>
+            <div class="samsung-box" style="background: #fff8e1; border-color: #fbc02d;">
+                <i class="la la-lightbulb" style="color: #fbc02d; font-size: 2rem;"></i>
+                <b style="display: block; margin-top: 10px;">Der Krankenhaus-Trick:</b>
+                <span>Sollte das WLAN "verbunden" sein, aber nichts laden: Öffne die App <b>Samsung Internet</b> oder <b>Chrome</b>. Meist erscheint erst dann die "Anmelde-Seite" des Krankenhauses, wo du auf "OK" oder "Akzeptieren" klicken musst.</span>
             </div>
-
-            <h3>Kopfhörer (Bluetooth)</h3>
-            <div class="step-pill"><span class="step-id">A</span><span>Schalte deine Kopfhörer ein (sie sollten blinken).</span></div>
-            <div class="step-pill"><span class="step-id">B</span><span>Wische von oben und halte das <b>Bluetooth-Symbol</b> gedrückt.</span></div>
-            <div class="step-pill"><span class="step-id">C</span><span>Tippe auf den Namen deiner Kopfhörer in der Liste.</span></div>
         </div>
     </main>
 
-    <!-- SEITE: GESTEN -->
+    <!-- GESTEN -->
     <main id="gestures" class="page">
         <div class="card">
-            <h2>Die Finger-Sprache.</h2>
-            <p>Das Tablet reagiert auf sanfte Berührungen, nicht auf starken Druck.</p>
-            
-            <div class="grid-3">
-                <div class="tile"><i class="la la-arrow-up"></i><strong>Nach Hause</strong><span>Von unten hochwischen</span></div>
-                <div class="tile"><i class="la la-arrow-left"></i><strong>Zurück</strong><span>Vom Rand zur Mitte</span></div>
-                <div class="tile"><i class="la la-search-plus"></i><strong>Vergrößern</strong><span>Auseinanderziehen</span></div>
+            <h2>Die Samsung Gesten.</h2>
+            <div class="grid-2">
+                <div class="tile"><i class="la la-arrow-up"></i><strong>Home</strong><span>Von unten wischen</span></div>
+                <div class="tile"><i class="la la-arrow-left"></i><strong>Zurück</strong><span>Vom Rand wischen</span></div>
+                <div class="tile"><i class="la la-search-plus"></i><strong>Zoom</strong><span>Auseinanderziehen</span></div>
+                <div class="tile"><i class="la la-history"></i><strong>Alle Apps</strong><span>Hochwischen & halten</span></div>
             </div>
-
-            <h3>Der "Vorhang"</h3>
-            <p>Wische von ganz oben nach unten, um deine Nachrichten (WhatsApp, Mail) oder verpasste Anrufe zu sehen. Wische eine Nachricht zur Seite, um sie zu löschen.</p>
         </div>
     </main>
 
-    <!-- SEITE: SCHREIBEN -->
+    <!-- TIPPEN -->
     <main id="typing" class="page">
         <div class="card">
             <h2>Besser schreiben.</h2>
-            <p>Tippen ist oft mühsam. Nutze diese zwei Erleichterungen:</p>
+            <p>Die Samsung-Tastatur ist sehr großzügig eingestellt.</p>
 
-            <div class="module-box">
-                <i class="la la-microphone"></i>
-                <div>
-                    <b>Reden statt Tippen:</b>
-                    Tippe in WhatsApp auf das kleine Mikrofon auf der Tastatur. Sprich einfach los – das Tablet schreibt jedes Wort für dich mit.
-                </div>
-            </div>
-
-            <h3>Gleiten (SwiftKey)</h3>
-            <p>Lasse deinen Finger einfach von Buchstabe zu Buchstabe gleiten, ohne ihn abzuheben. Das Tablet erkennt das Wort automatisch. Probiere es mit "Alles Liebe".</p>
+            <h3><i class="la la-microphone"></i> Diktieren (Sprechen)</h3>
+            <p>Tippe in ein Textfeld. Oben auf der Tastatur siehst du ein kleines <b>Mikrofon-Symbol</b>. Tippe darauf und sprich einfach. Das Tablet schreibt alles für dich mit.</p>
+            
+            <h3><i class="la la-hand-pointer"></i> Wischen (Flow)</h3>
+            <p>Du musst nicht tippen. Gleite mit dem Finger über die Buchstaben (z.B. von H zu A zu L zu L zu O) und das Wort "Hallo" erscheint wie von Geisterhand.</p>
         </div>
     </main>
 
-    <!-- SEITE: MEDIEN -->
+    <!-- MEDIEN -->
     <main id="media" class="page">
         <div class="card">
-            <h2>Freizeit & Unterhaltung.</h2>
-            <p>Gegen die Langeweile ist alles vorbereitet.</p>
-            
-            <div class="grid-3">
-                <div class="tile"><i class="la la-tv"></i><strong>Fernsehen</strong><span>ARD & ZDF Mediathek</span></div>
-                <div class="tile"><i class="la la-newspaper"></i><strong>Nachrichten</strong><span>Zeitungen in Chrome</span></div>
-                <div class="tile"><i class="la la-broadcast-tower"></i><strong>Radio</strong><span>Alle Sender weltweit</span></div>
-                <div class="tile"><i class="la la-book"></i><strong>Bücher</strong><span>Kindle & Play Books</span></div>
+            <h2>Deine Unterhaltung.</h2>
+            <div class="grid-2">
+                <div class="tile"><i class="la la-tv"></i><strong>Mediatheken</strong><span>ARD & ZDF</span></div>
+                <div class="tile"><i class="la la-chrome"></i><strong>Nachrichten</strong><span>Samsung Internet</span></div>
+                <div class="tile"><i class="la la-broadcast-tower"></i><strong>Radio</strong><span>Radio.de App</span></div>
+                <div class="tile"><i class="la la-book"></i><strong>Bücher</strong><span>Kindle App</span></div>
             </div>
-
-            <div class="module-box">
-                <i class="la la-times-circle"></i>
-                <div>
-                    <b>Werbung wegklicken:</b>
-                    Suche bei störenden Fenstern im Browser immer nach dem kleinen "X" in einer der oberen Ecken.
-                </div>
+            <div class="samsung-box">
+                <b>Tipp:</b> Dein Tablet hat einen tollen Ton. Nutze aber im Krankenhaus immer deine Kopfhörer, um die Nachbarn nicht zu stören.
             </div>
         </div>
     </main>
 
-    <!-- SEITE: FAMILIE -->
+    <!-- FAMILIE -->
     <main id="family" class="page">
         <div class="card">
-            <h2>Deine Familie.</h2>
-            <p>Wir sind nur einen Fingertipp entfernt.</p>
+            <h2>Wir sind nah bei dir.</h2>
+            <h3><i class="la la-video"></i> Video-Anrufe</h3>
+            <p>Tippe in WhatsApp oben rechts auf die kleine Kamera. Durch das große Display des A11+ kannst du uns fast in Lebensgröße sehen!</p>
             
-            <div class="grid-3">
-                <div class="tile"><i class="la la-video"></i><strong>Video-Anruf</strong><span>Kamera oben rechts</span></div>
-                <div class="tile"><i class="la la-microphone-alt"></i><strong>Sprachnachricht</strong><span>Mikro gedrückt halten</span></div>
-                <div class="tile"><i class="la la-image"></i><strong>Fotos senden</strong><span>Büroklammer -> Galerie</span></div>
-            </div>
-
-            <h3>Google Meet</h3>
-            <p>Wenn wir uns alle gleichzeitig sehen wollen, schicken wir dir einen blauen Link. Tippe darauf und klicke auf "Teilnehmen".</p>
+            <h3><i class="la la-users"></i> Google Meet</h3>
+            <p>Für unsere Familien-Treffen schicken wir dir einen Link. Einfach antippen und auf "Teilnehmen" klicken.</p>
         </div>
     </main>
 
-    <!-- SEITE: WISSEN -->
+    <!-- WISSEN -->
     <main id="gemini" class="page">
         <div class="card">
             <h2>Wissen & Fragen.</h2>
-            <p>Gemini ist dein persönlicher Experte, der dir alles geduldig erklärt.</p>
-            
-            <div style="background: #e9f0ff; color: #004a99; padding: 24px; border-radius: 20px; font-style: italic; margin-bottom: 24px;">
+            <p>Gemini ist dein Assistent für alles.</p>
+            <div style="background: #e9f0ff; color: #034ea2; padding: 24px; border-radius: 20px; font-style: italic; margin-bottom: 24px;">
                 "Erklär mir diesen Fachbegriff ganz einfach..."<br><br>
                 "Schreib eine nette Nachricht an meine Nachbarn..."<br><br>
-                "Erzähl mir etwas Spannendes über die Geschichte von..."
+                "Was kann ich im Krankenhaus gegen Langeweile tun?"
             </div>
-            
-            <p>Tippe auf das bunte Sternen-Symbol (Gemini) und nutze dort das Mikrofon, um deine Frage einfach laut zu stellen.</p>
+            <p>Tippe auf das bunte Sternen-Symbol (Gemini) und frage ihn alles, was dich bewegt.</p>
         </div>
     </main>
 
-    <!-- SEITE: HILFE -->
+    <!-- HILFE -->
     <main id="help" class="page">
         <div class="card">
             <h2>Sicherheit & Hilfe.</h2>
-            
-            <div class="warning-box">
-                <b>Achtung vor Betrügern!</b>
-                <p style="margin-top: 10px; font-size: 1.05rem;">Banken oder Paketdienste (DHL) fragen dich <b>niemals</b> per Mail nach Passwörtern oder Geld. Lösche solche Nachrichten im Zweifel einfach.</p>
+            <div class="samsung-box" style="background: #fff2f2; border-color: #ffdad6;">
+                <b style="color: #c53030;">Vorsicht bei E-Mails!</b>
+                <p style="color: #c53030; font-size: 1rem; margin-top: 10px;">Lösche E-Mails von Banken oder DHL, die dich nach deinem Passwort fragen oder Geld verlangen. Das sind Betrüger.</p>
             </div>
-
-            <h3>Der 15-Sekunden-Trick</h3>
-            <p>Wenn das Tablet "hängt": Halte die Ein/Aus-Taste an der Seite 15 Sekunden lang fest gedrückt. Das Gerät startet neu und alles ist wieder gut.</p>
             
-            <button class="print-btn no-print" onclick="window.print()">
+            <h3>Der Samsung-Neustart</h3>
+            <p>Sollte das Tablet einmal "einfrieren": Halte die <b>Ein/Aus-Taste</b> und die <b>Leiser-Taste</b> gleichzeitig für ca. 10 Sekunden gedrückt. Das Gerät startet dann neu.</p>
+            
+            <button class="no-print" onclick="window.print()" style="width:100%; padding:22px; background:#1d1d1f; color:white; border-radius:20px; border:none; font-weight:700; cursor:pointer; margin-top:30px;">
                 <i class="la la-print"></i> Gesamtes Handbuch drucken
             </button>
         </div>
@@ -410,9 +355,7 @@
         document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
         document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
         
-        const target = document.getElementById(pageId);
-        if (target) target.classList.add('active');
-        
+        document.getElementById(pageId).classList.add('active');
         const btn = Array.from(document.querySelectorAll('.nav-item'))
                          .find(b => b.getAttribute('onclick').includes(pageId));
         if (btn) btn.classList.add('active');
